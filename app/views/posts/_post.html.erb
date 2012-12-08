@@ -1,0 +1,19 @@
+<div class="post">
+    <% if post.content? %>
+        <div class="post-content">
+            <%= image_tag post.content.url %>
+        </div>
+    <% end %>
+
+    <% if post.title? %>
+        <div class="post-title">
+            <%= post.title %>
+        </div>
+    <% end %>
+
+    <% if post.text? %>
+        <div class="post-text">
+            <%= post.text %>
+        </div>
+    <% end %>
+</div>

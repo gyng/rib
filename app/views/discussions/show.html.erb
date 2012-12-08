@@ -1,0 +1,8 @@
+<p id="notice"><%= notice %></p>
+
+<%= render :partial => '/posts/form' %>
+
+<%= render @discussion.posts %>
+
+<%= link_to 'Edit', edit_discussion_path(@discussion) %> |
+<%= link_to 'Back', discussions_path %>
