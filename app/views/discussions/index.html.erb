@@ -1,7 +1,12 @@
 <h1>Listing discussions</h1>
 
+<h2>Create discussion</h2>
+<%= render "form" %>
+
 <table>
   <tr>
+    <th>ID</th>
+    <th>First post</th>
     <th></th>
     <th></th>
     <th></th>
@@ -9,6 +14,8 @@
 
 <% @discussions.each do |discussion| %>
   <tr>
+    <td><%= discussion.id %></td>
+    <td><%= render listing_posts(discussion) %></td>
     <td><%= link_to 'Show', discussion %></td>
     <td><%= link_to 'Edit', edit_discussion_path(discussion) %></td>
     <td><%= link_to 'Destroy', discussion, method: :delete, data: { confirm: 'Are you sure?' } %></td>

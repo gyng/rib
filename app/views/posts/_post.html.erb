@@ -1,4 +1,16 @@
-<div class="post">
+<div class="post" id="#p<%= post.id %>">
+    <div class="post-thread">
+        <%= link_to post.discussion.id, post.discussion %>
+    </div>
+
+    <div class="post-id">
+        <%= link_to post.id, "#{url_for post.discussion}#p#{post.id}" %>
+    </div>
+
+    <div class="post-timestamp">
+        <%= post.created_at %>
+    </div>
+
     <% if post.content? %>
         <div class="post-content">
             <%= image_tag post.content.url %>
