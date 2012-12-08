@@ -1,0 +1,8 @@
+<p id="notice"><%= notice %></p>
+
+<%= render partial: 'new_discussion_form' %>
+
+<%= render partial: 'shared/discussion_summary_listing' %>
+
+<%= link_to 'Edit', edit_board_path(@board) %> |
+<%= link_to 'Back', boards_path %>

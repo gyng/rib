@@ -4,5 +4,11 @@
 
 <%= render @discussion.posts %>
 
+<% if @discussion.board_id? %>
+    <%= @discussion.board_id %>
+<% else %>
+    <%= "noid" %>
+<% end %>
+
 <%= link_to 'Edit', edit_discussion_path(@discussion) %> |
 <%= link_to 'Back', discussions_path %>

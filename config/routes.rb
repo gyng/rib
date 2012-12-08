@@ -1,4 +1,7 @@
 Rib::Application.routes.draw do
+  resources :boards
+
+
   resources :discussions
 
 

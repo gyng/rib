@@ -1,0 +1,22 @@
+<%= form_for(@board, html: { multipart: true }) do |b| %>
+  <%= b.fields_for :discussions, @discussion do |f| %>
+    <%= f.fields_for :posts, @post do |p| %>
+      <div class="field">
+        <%= p.label :title %>
+        <%= p.text_field :title %>
+      </div>
+      <div class="field">
+        <%= p.label :text %><br />
+        <%= p.text_area :text %>
+      </div>
+      <div class="field">
+        <%= p.label :content %>
+        <%= p.file_field :content %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <div class="actions">
+    <%= b.submit @submit_label %>
+  </div>
+<% end %>

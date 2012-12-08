@@ -1,7 +1,7 @@
 class Post < ActiveRecord::Base
-  attr_accessible :text, :title
-  attr_protected :discussion_id
+  attr_accessible :text, :title, :content, :discussion, :discussion_id
   belongs_to :discussion
+  belongs_to :board
   after_destroy :destroy_empty_discussion
 
   # Paperclip
