@@ -14,7 +14,8 @@ class BoardsController < ApplicationController
   # GET /boards/1.json
   def show
     @board = Board.find(params[:id])
-    @discussions = @board.discussions
+    #@discussions = @board.discussions
+    @discussions = @board.discussions.paginate page: params[:page], order: 'updated_at desc', per_page: 10
     @discussion = Discussion.new(board: @board)
     @post = Post.new(discussion: @discussion)
     @submit_label = "New Discussion"
@@ -68,7 +69,7 @@ class BoardsController < ApplicationController
         format.html { redirect_to @board, notice: params[:board].inspect }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { redirect_to @board, notice: 'Failed to create new discussion' }
         format.json { render json: @board.errors, status: :unprocessable_entity }
       end
     end

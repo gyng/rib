@@ -1,4 +1,5 @@
-<%= form_for(@discussion, html: { multipart: true }) do |f| %>
+<!-- form_for(@discussion, html: { multipart: true }, remote: true) do |f| -->
+<%= form_for(@discussion, html: { multipart: true }) do |d| %>
   <% if @discussion.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@discussion.errors.count, "error") %> prohibited this discussion from being saved:</h2>
@@ -11,7 +12,7 @@
     </div>
   <% end %>
 
-  <%= f.fields_for :posts, @post do |p| %>
+  <%= d.fields_for :posts, @post do |p| %>
     <div class="field">
       <%= p.label :title %>
       <%= p.text_field :title %>
@@ -25,7 +26,8 @@
       <%= p.file_field :content %>
     </div>
   <% end %>
+
   <div class="actions">
-    <%= f.submit @submit_label %>
+    <%= d.submit @submit_label %>
   </div>
 <% end %>

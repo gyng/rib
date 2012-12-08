@@ -39,3 +39,5 @@ gem 'jquery-rails'
 
 # Paperclip: attachments gem
 gem 'paperclip'
+
+gem 'will_paginate', '~> 3.0'

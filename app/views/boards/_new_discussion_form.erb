@@ -1,6 +1,18 @@
 <%= form_for(@board, html: { multipart: true }) do |b| %>
-  <%= b.fields_for :discussions, @discussion do |f| %>
-    <%= f.fields_for :posts, @post do |p| %>
+  <% if @board.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@board.errors.count, "error") %> prohibited this discussion from being saved:</h2>
+
+      <ul>
+      <% @board.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= b.fields_for :discussions, @discussion do |d| %>
+    <%= d.fields_for :posts, @post do |p| %>
       <div class="field">
         <%= p.label :title %>
         <%= p.text_field :title %>
