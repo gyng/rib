@@ -7,8 +7,17 @@ class Post < ActiveRecord::Base
 
   # Paperclip
   has_attached_file :content#, styles: { thumb: "250x250#" }
+  before_content_post_process :rename_content
 
   validate :has_text_or_content
+
+  def rename_content
+    extension = File.extname(content.path).downcase
+    #name = Digest::MD5.file(content.path).hexdigest
+    name = Time.now.to_i.to_s
+    filename = name + extension
+    self.content.instance_write :file_name, filename
+  end
 
   def update_discussion_last_post_at
     discussion.last_post_at = Time.now.to_i
