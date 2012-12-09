@@ -1,6 +1,5 @@
 <table>
   <tr>
-    <th>ID</th>
     <th></th>
     <th></th>
     <th></th>
@@ -9,7 +8,6 @@
 
 <% @discussions.each do |discussion| %>
   <tr>
-    <td><%= discussion.id %></td>
     <td><%= render listing_posts(discussion) %></td>
     <td><%= link_to 'Show', discussion %></td>
     <td><%= link_to 'Edit', edit_discussion_path(discussion) %></td>

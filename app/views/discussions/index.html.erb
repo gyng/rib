@@ -3,7 +3,23 @@
 <h2>Create discussion</h2>
 <%= render "form" %>
 
-<%= render "shared/discussion_summary_listing" %>
-<br />
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @discussions.each do |discussion| %>
+  <tr>
+    <td><%= render listing_posts(discussion) %></td>
+    <td><%= link_to 'Show', discussion %></td>
+    <td><%= link_to 'Edit', edit_discussion_path(discussion) %></td>
+    <td><%= link_to 'Destroy', discussion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
 
 <%= link_to 'New Discussion', new_discussion_path %>

@@ -2,10 +2,18 @@
 
 <p id="notice"><%= notice %></p>
 
-<%= render partial: 'form' %>
+<div class="discussion-info">
+    <div id="discussion-info-id">
+        <h4>d<%= @discussion.id %></h4>
+    </div>
+    <div id="discussion-info-time">
+        <div>Last Post at <%= Time.at(@discussion.last_post_at).to_s %></div>
+        <div><%= (Time.now - Time.at(@discussion.last_post_at)).to_i / 60 %> minutes ago</div>
+    </div>
 
-Updated at: <%= @discussion.updated_at %><br>
-Last Post at: <%= @discussion.last_post_at %>
+    <%= render partial: 'form' %>
+</div>
+
 <%= render @discussion.posts %>
 
 <%= link_to 'Edit', edit_discussion_path(@discussion) if session[:user_id] %>

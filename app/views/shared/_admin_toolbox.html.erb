@@ -1,0 +1,16 @@
+<div class="container admin-toolbox">
+    <div class="twelve columns alpha">
+        <%= link_to 'Boards', boards_path %>
+        <%= link_to 'Discussions', discussions_path %>
+        <%= link_to 'Posts', posts_path %>
+        <%= link_to 'Flagged' %>
+    </div>
+
+    <div class="admin-username two columns">
+        <%= User.find(session[:user_id]).name %>
+    </div>
+
+    <div class="admin-logout two column omega">
+        <%= button_to 'Logout', logout_path, method: :delete %>
+    </div>
+</div>

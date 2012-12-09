@@ -10,6 +10,7 @@ class Post < ActiveRecord::Base
   before_content_post_process :rename_content
 
   validate :has_text_or_content
+  validate :discussion, presence: true
 
   def rename_content
     extension = File.extname(content.path).downcase
@@ -31,6 +32,7 @@ class Post < ActiveRecord::Base
   end
 
   def destroy_empty_discussion
+    return if discussion.nil?
     discussion.destroy if discussion.posts.empty?
   end
 end

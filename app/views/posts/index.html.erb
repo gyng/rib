@@ -1,25 +1,49 @@
-<h1>Listing posts</h1>
+<h1>Latest posts</h1>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Text</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<%= will_paginate @posts %>
+
+<% i = 1 %>
 
 <% @posts.each do |post| %>
-  <tr>
-    <td><%= post.title %></td>
-    <td><%= post.text %></td>
-    <td><%= link_to 'Show', post %></td>
-    <td><%= link_to 'Edit', edit_post_path(post) %></td>
-    <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+  <% if i > 1 && i % 3 == 1 %>
+    <hr>
+    <div class="post-index-entry one-third column alpha">
+  <% elsif i % 3 == 0 %>
+    <div class="post-index-entry one-third column omega">
+  <% else %>
+    <div class="post-index-entry one-third column">
+  <% end %>
+  <% i += 1 %>
+
+    <% if session[:user_id] %>
+      <div class="admin-controls">
+        <span><%= link_to 'Show', post %></span>
+        <span><%= link_to 'Edit', edit_post_path(post) %></span>
+        <span><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+      </div>
+    <% end %>
+
+    <div>
+      <% if !post.discussion.nil? && !post.discussion.board.nil? %>
+        <div class="post-index-entry-board">
+          <%= post.discussion.board.title %>
+        </div>
+      <% end %>
+
+      <% if post.title? %>
+        <div class="post-index-entry-title">
+          <%= post.title %>
+        </div>
+      <% end %>
+
+      <% if post.text? %>
+        <div class="post-index-entry-text">
+          <%= post.text %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 <% end %>
-</table>
 
-<br />
-
-<%= link_to 'New Post', new_post_path %>
+<div class="clearfix"></div>
+<%= will_paginate @posts %>

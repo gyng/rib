@@ -1,20 +1,43 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Title:</b>
-  <%= @post.title %>
-</p>
+<% if session[:user_id] %>
+    <div class="admin-controls">
+        <%= link_to 'Edit', edit_post_path(@post) %>
+    </div>
+<% end %>
 
-<p>
-  <b>Text:</b>
-  <%= @post.text %>
-</p>
+<div class="post sixteen columns alpha omega" id="#p<%= @post.id %>">
+    <%= link_to 'Back', posts_path %>
 
-<p>
-  <b>belongs to:</b>
-  <%= @post.discussion.id %>
-</p>
+    <h3 class="post-individual-id">
+        <%= link_to "Post #{@post.discussion.id if !@post.discussion.nil?}##{@post.id}", "#{url_for @post.discussion}#p#{@post.id}" %>
+    </h3>
 
+    <% if !@post.discussion.nil? && !@post.discussion.board.nil? %>
+        <span class="post-index-entry-board">
+          <%= @post.discussion.board.title %>
+        </span>
+    <% end %>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+    <span class="post-individual-timestamp"><%= @post.created_at %></span>
+
+    <hr>
+
+    <% if @post.content? %>
+        <div class="post-content">
+            <%= image_tag @post.content.url %>
+        </div>
+    <% end %>
+
+    <% if @post.title? %>
+        <h1 class="post-title">
+            <%= @post.title %>
+        </h1>
+    <% end %>
+
+    <% if @post.text? %>
+        <p class="post-text">
+            <%= @post.text %>
+        </p>
+    <% end %>
+</div>
