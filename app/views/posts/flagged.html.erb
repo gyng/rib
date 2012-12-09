@@ -1,0 +1,61 @@
+<h1>Flagged posts</h1>
+
+<p id="notice"><%= notice %></p>
+
+<% if @posts.empty? %>
+  <p>No flagged posts.</p>
+<% else %>
+  <p><%= @posts.size %> flagged posts.</p>
+
+  <%= will_paginate @posts %>
+
+  <% i = 1 %>
+  <% @posts.each do |post| %>
+    <% if i % 3 == 1 %>
+      <% if i > 1 %><hr><% end %>
+      <div class="post-index-entry one-third column alpha">
+    <% elsif i % 3 == 0 %>
+      <div class="post-index-entry one-third column omega">
+    <% else %>
+      <div class="post-index-entry one-third column">
+    <% end %>
+    <% i += 1 %>
+
+      <% if session[:user_id] %>
+        <div class="admin-controls">
+          <div><%= link_to 'Unflag', "/posts/unflag/#{post.id}", :method => :put %></div>
+          <span><%= link_to 'Show', post %></span>
+          <span><%= link_to 'Edit', edit_post_path(post) %></span>
+          <span><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+        </div>
+      <% end %>
+
+      <div>
+        <% if !post.discussion.nil? && !post.discussion.board.nil? %>
+          <div class="post-index-entry-board">
+            <%= post.discussion.board.title %>
+          </div>
+        <% end %>
+
+        <div class="post-index-entry-id">
+          <%= post.id %>
+        </div>
+
+        <% if post.title? %>
+          <div class="post-index-entry-title">
+            <%= post.title %>
+          </div>
+        <% end %>
+
+        <% if post.text? %>
+          <div class="post-index-entry-text">
+            <%= post.text %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="clearfix"></div>
+  <%= will_paginate @posts %>
+<% end %>

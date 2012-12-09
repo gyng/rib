@@ -1,0 +1,16 @@
+/*
+ * This is the CSS for _board_switcher.html.erb partial
+ */
+
+ .board-switcher-boards {
+    text-align: right;
+ }
+
+.board-switcher-indices {
+    text-align: right;
+}
+
+.board-switcher {
+    padding: 15px !important;
+    border-bottom: solid 1px #ddd;
+}

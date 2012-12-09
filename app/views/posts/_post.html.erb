@@ -10,6 +10,10 @@
             <span class="post-timestamp-created-at"><%= post.created_at %></span>
             <span class="post-timestamp-relative"><%= (Time.at(post.created_at) - Time.now).to_i / 60 %> min</span>
         </span>
+
+        <span class="post-flag">
+            <%= link_to 'Flag', "/posts/flag/#{post.id}" , :method => :put %>
+        </span>
     </div>
 
     <% if post.title? %>

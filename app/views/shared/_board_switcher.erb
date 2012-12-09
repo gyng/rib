@@ -1,0 +1,12 @@
+<div class="container board-switcher add-bottom">
+        <div class="two-thirds column board-switcher-boards">
+             <% Board.all.each do |board| %>
+                <%= link_to(board.title, board) %>
+            <% end %>
+        </div>
+        <div class="one-thirds column board-switcher-indices">
+            <%= link_to 'Boards', boards_path %>
+            <%= link_to 'Posts', posts_path %>
+            <%= link_to 'Discussions', discussions_path %>
+        </div>
+</div>

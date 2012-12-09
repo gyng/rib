@@ -16,8 +16,13 @@ Rib::Application.routes.draw do
   resources :discussions
 
 
-  resources :posts
-
+  resources :posts do
+    collection do
+      put 'flag/:id' => 'posts#flag'
+      put 'unflag/:id' => 'posts#unflag'
+      get 'flagged'
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

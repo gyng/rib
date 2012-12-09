@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121209095408) do
+ActiveRecord::Schema.define(:version => 20121209192918) do
 
   create_table "boards", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -29,13 +29,14 @@ ActiveRecord::Schema.define(:version => 20121209095408) do
   create_table "posts", :force => true do |t|
     t.string   "title"
     t.string   "text"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
     t.integer  "discussion_id"
     t.string   "content_file_name"
     t.string   "content_content_type"
     t.integer  "content_file_size"
     t.integer  "board_id"
+    t.boolean  "flagged",              :default => false
   end
 
   create_table "users", :force => true do |t|

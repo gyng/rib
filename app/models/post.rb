@@ -1,11 +1,10 @@
 class Post < ActiveRecord::Base
   include ActionView::Helpers::UrlHelper # for link_to helper in parse_quoted_posts
 
-  attr_accessible :text, :title, :content, :discussion, :discussion_id
+  attr_accessible :text, :title, :content, :discussion, :discussion_id, :flagged
   belongs_to :discussion
   belongs_to :board
   after_create :update_discussion_last_post_at
-  #before_save :parse_quoted_posts
   after_destroy :destroy_empty_discussion
 
   # Paperclip
@@ -14,19 +13,6 @@ class Post < ActiveRecord::Base
 
   validate :has_text_or_content
   validate :discussion, presence: true
-
-  def parse_quoted_posts
-    unless text.nil? then
-      text.scan(/>>(\d+)/).each do |post_id|
-        if !(p = Post.find_by_id(post_id)).nil?
-          text.gsub!(/>>#{post_id[0]}/, link_to("a", p))
-        end
-      end
-    end
-  end
-
-  def parse_replied_posts
-  end
 
   def rename_content
     extension = File.extname(content.path).downcase

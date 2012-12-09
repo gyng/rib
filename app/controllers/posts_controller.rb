@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  skip_before_filter :authorize, only: [:show, :new, :create]
+  skip_before_filter :authorize, only: [:show, :new, :create, :flag]
 
   # GET /posts
   # GET /posts.json
@@ -9,6 +9,45 @@ class PostsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @posts }
+    end
+  end
+
+  def flagged
+    @posts = Post.where(flagged: true).paginate page: params[:page], order: 'created_at desc', per_page: 21
+
+    respond_to do |format|
+      format.html # flagged.html.erb
+      format.json { render json: @posts }
+    end
+  end
+
+  def flag
+    @post = Post.find(params[:id])
+    @post.flagged = true
+
+    respond_to do |format|
+      if @post.save
+        format.html { redirect_to :back, notice: 'Post was flagged.' }
+        format.json { render json: @post, status: :flagged, location: @post }
+      else
+        format.html { render action: "flag" }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def unflag
+    @post = Post.find(params[:id])
+    @post.flagged = false
+
+    respond_to do |format|
+      if @post.save
+        format.html { redirect_to :back, notice: 'Post was unflagged.' }
+        format.json { render json: @post, status: :flagged, location: @post }
+      else
+        format.html { render action: "unflag" }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
+      end
     end
   end
 
