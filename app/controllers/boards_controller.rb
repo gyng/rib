@@ -17,7 +17,7 @@ class BoardsController < ApplicationController
   def show
     @board = Board.find(params[:id])
     #@discussions = @board.discussions
-    @discussions = @board.discussions.paginate page: params[:page], order: 'updated_at desc', per_page: 10
+    @discussions = @board.discussions.paginate page: params[:page], order: 'last_post_at desc', per_page: 10
     @discussion = Discussion.new(board: @board)
     @post = Post.new(discussion: @discussion)
     @submit_label = "New Discussion"

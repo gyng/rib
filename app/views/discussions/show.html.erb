@@ -4,7 +4,8 @@
 
 <%= render partial: 'form' %>
 
-Updated at: <%= @discussion.updated_at %>
+Updated at: <%= @discussion.updated_at %><br>
+Last Post at: <%= @discussion.last_post_at %>
 <%= render @discussion.posts %>
 
 <%= link_to 'Edit', edit_discussion_path(@discussion) if session[:user_id] %>
