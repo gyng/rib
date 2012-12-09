@@ -1,10 +1,10 @@
-<p id="notice"><%= notice %></p>
+<%= link_to @discussion.board.title, @discussion.board %>
 
-<%= Board.find(@discussion.board_id).title %>
+<p id="notice"><%= notice %></p>
 
 <%= render partial: 'form' %>
 
+Updated at: <%= @discussion.updated_at %>
 <%= render @discussion.posts %>
 
-<%= link_to 'Edit', edit_discussion_path(@discussion) %> |
-<%= link_to 'Back', discussions_path %>
+<%= link_to 'Edit', edit_discussion_path(@discussion) if session[:user_id] %>

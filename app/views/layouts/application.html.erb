@@ -8,6 +8,13 @@
 </head>
 <body>
 
+<% if session[:user_id] %>
+    <div class="admin-toolbox">
+        Logged in as <%= User.find(session[:user_id]).name %>
+        <%= button_to 'Logout', logout_path, method: :delete %>
+    </div>
+<% end %>
+
 <%= yield %>
 
 </body>

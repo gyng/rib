@@ -1,4 +1,6 @@
 class DiscussionsController < ApplicationController
+  skip_before_filter :authorize, only: [:index, :show, :create, :new, :update]
+
   # GET /discussions
   # GET /discussions.json
   def index

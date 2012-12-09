@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  skip_before_filter :authorize, only: [:show, :new, :create]
+
   # GET /posts
   # GET /posts.json
   def index

@@ -1,4 +1,6 @@
 class BoardsController < ApplicationController
+  skip_before_filter :authorize, only: [:index, :show, :update]
+
   # GET /boards
   # GET /boards.json
   def index
@@ -69,7 +71,7 @@ class BoardsController < ApplicationController
         format.html { redirect_to @board, notice: params[:board].inspect }
         format.json { head :no_content }
       else
-        format.html { redirect_to @board, notice: 'Failed to create new discussion' }
+        format.html { redirect_to @board, notice: 'Failed to create new discussion.' }
         format.json { render json: @board.errors, status: :unprocessable_entity }
       end
     end
