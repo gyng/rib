@@ -8,7 +8,7 @@
     <% if !listing_posts_array.nil? %>
       <div class="discussion-listing-replies offset-by-one">
         <% if discussion.posts.size > 3 %>
-          &vellip;
+          <span class="vellip">&vellip;</span>
         <% end %>
 
         <%= render listing_posts_array %>

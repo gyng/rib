@@ -4,6 +4,9 @@
 
 .post {
     margin: 12px 0;
+    .post-info {
+        color: #777;
+    }
 
     .post-content {
         display: inline;
@@ -16,6 +19,7 @@
     }
 
     .post-text {
+        padding: 8px 0;
         overflow: hidden;
         word-wrap: break-word;
         text-overflow: ellipsis;

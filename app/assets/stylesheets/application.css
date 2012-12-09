@@ -19,3 +19,7 @@
 .admin-controls {
     font-style: italic;
 }
+
+.admin-controls a {
+    color: #888 !important;
+}
