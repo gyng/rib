@@ -12,9 +12,8 @@
   <tr>
     <td><%= board.title %></td>
     <td><%= link_to 'Show', board %></td>
-      <td><%= link_to 'Edit', edit_board_path(board) if session[:user_id] %></td>
-      <td><%= link_to 'Destroy', board, method: :delete, data: { confirm: 'Are you sure?' } if session[:user_id] %></td>
-
+    <td><%= link_to 'Edit', edit_board_path(board) if session[:user_id] %></td>
+    <td><%= link_to 'Destroy', board, method: :delete, data: { confirm: 'Are you sure?' } if session[:user_id] %></td>
   </tr>
 <% end %>
 </table>

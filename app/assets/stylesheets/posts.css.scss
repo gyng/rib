@@ -15,7 +15,19 @@
     }
 
     .post-text {
+        overflow: hidden;
+        word-wrap: break-word;
         text-overflow: ellipsis;
+    }
+
+    .post-content {
+        float: left;
+    }
+
+    .unexpanded img {
+        resize: both;
+        max-width: 400px;
+        max-height: 400px;
     }
 }
 

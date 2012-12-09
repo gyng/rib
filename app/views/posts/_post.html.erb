@@ -1,6 +1,8 @@
 <div class="post two-thirds column alpha" id="#p<%= post.id %>">
     <div class="post-individual-id">
-        <%= link_to "#{post.discussion.id if !post.discussion.nil?}##{post.id}", "#{url_for post.discussion}#p#{post.id}" %>
+        <%= link_to "#{post.discussion.id if !post.discussion.nil?}", "#{url_for post.discussion}" %>
+        <%= link_to "#", "#{url_for post.discussion}#p#{post.id}" %>
+        <%= link_to "#{post.id}", "#{url_for post}" %>
     </div>
 
     <div class="post-timestamp">
@@ -15,15 +17,21 @@
     <% end %>
 
     <% if post.content? %>
-        <div class="post-content">
+        <div class="post-content unexpanded">
             <%= image_tag post.content.url %>
         </div>
     <% end %>
 
-
     <% if post.text? %>
         <div class="post-text">
             <%= post.text %>
+        </div>
+    <% end %>
+
+    <% if session[:user_id] %>
+        <div class="admin-controls">
+            <%= link_to 'E', edit_post_path(post) %>
+            <%= link_to 'D', post, method: :delete, data: { confirm: 'Are you sure?' } %>
         </div>
     <% end %>
 </div>

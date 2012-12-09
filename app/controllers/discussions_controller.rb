@@ -71,7 +71,7 @@ class DiscussionsController < ApplicationController
 
     respond_to do |format|
       if @discussion.update_attributes(params[:discussion])
-        format.html { redirect_to @discussion, notice: 'Discussion was successfully updated.' }
+        format.html { redirect_to @discussion, notice: 'Reply added.' }
         #format.js
         format.json { head :no_content }
       else
