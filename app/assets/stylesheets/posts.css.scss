@@ -45,6 +45,11 @@
     font-size: 0;
 }
 
+
+.post:target{
+ background-color: #cde;
+}
+
 .post-index-entry {
     margin: 10px 0;
 }

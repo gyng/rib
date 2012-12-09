@@ -1,4 +1,4 @@
-<div class="post two-thirds column alpha" id="#p<%= post.id %>">
+<div class="post two-thirds column alpha" id="p<%= post.id %>">
     <div class="post-info">
         <span class="post-individual-id">
             <%= link_to "#{post.discussion.id if !post.discussion.nil?}", "#{url_for post.discussion}" %>
@@ -26,7 +26,19 @@
 
     <% if post.text? %>
         <div class="post-text">
-            <%= post.text %>
+            <!-- Very inefficient? Tried doing in model but link_to doesn't work in models. Controller had issues finding paths -->
+            <% post.text.scan(/>>(\d+)/).each do |post_id| %>
+                <% if !(p = Post.find_by_id(post_id)).nil? %>
+                    <% post.text.gsub!(/>>#{post_id[0]}/,
+                        link_to(
+                            ">>#{post_id[0]}#{" (Crosslink)" if p.discussion_id != post.discussion_id}",
+                            "#{url_for p.discussion}#p#{p.id}")
+                        )
+                    %>
+                <% end %>
+            <% end %>
+
+            <%= post.text.html_safe %>
         </div>
     <% end %>
 
