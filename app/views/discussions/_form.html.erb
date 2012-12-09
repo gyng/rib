@@ -14,11 +14,11 @@
   <%= d.fields_for :posts, @post do |p| %>
     <div class="field">
       <%= p.label :title %>
-      <%= p.text_field :title, placeholder: "Title" %>
+      <%= p.text_field :title, placeholder: "The Weather" %>
     </div>
     <div class="field">
       <%= p.label :text %>
-      <%= p.text_area :text, size: "40x10", placeholder: "Text" %>
+      <%= p.text_area :text, size: "40x10", placeholder: "New reply." %>
     </div>
     <div class="field">
       <%= p.label :content %>
