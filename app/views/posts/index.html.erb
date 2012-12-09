@@ -5,8 +5,8 @@
 <% i = 1 %>
 
 <% @posts.each do |post| %>
-  <% if i > 1 && i % 3 == 1 %>
-    <hr>
+  <% if i % 3 == 1 %>
+    <% if i > 1 %><hr><% end %>
     <div class="post-index-entry one-third column alpha">
   <% elsif i % 3 == 0 %>
     <div class="post-index-entry one-third column omega">

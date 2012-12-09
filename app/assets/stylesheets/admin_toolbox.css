@@ -1,0 +1,18 @@
+/*
+ * This is the CSS for _admin_toolbox.html.erb partial
+ */
+
+.admin-toolbox {
+    margin-top: 25px !important;
+    padding: 15px 0 !important;
+    background-color: #efefef;
+}
+
+.admin-username, .admin-logout {
+    margin: 0 0 0 10px;
+    float: right;
+}
+
+.admin-username {
+    font-weight: bold;
+}

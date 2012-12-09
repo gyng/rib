@@ -8,6 +8,7 @@
     .post-content {
         display: inline;
         float: left;
+        margin: 0 15px 0 0;
     }
 
     .post-title {
@@ -26,8 +27,8 @@
 
     .unexpanded img {
         resize: both;
-        max-width: 400px;
-        max-height: 400px;
+        max-width: 350px;
+        max-height: 350px;
     }
 }
 

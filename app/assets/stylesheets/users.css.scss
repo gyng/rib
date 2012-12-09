@@ -1,3 +1,24 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#users-index {
+    th {
+        padding: 10px;
+        font-weight: bold;
+        text-align: left;
+    }
+
+    td {
+        padding: 10px;
+        word-wrap: break-word;
+    }
+
+    th:not(:first-child), td:not(:first-child) {
+        border-left: solid 1px #ddd;
+    }
+
+    tr:nth-child(even) {
+        background-color: #efefef;
+    }
+}

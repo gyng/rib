@@ -1,27 +1,33 @@
-<p id="notice"><%= notice %></p>
+<div class="sixteen columns">
+  <p id="notice"><%= notice %></p>
 
-<h1>Listing users</h1>
+  <h1>Users</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Password digest</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+  <table class="sixteen columns alpha omega" id="users-index">
+    <tr>
+      <th>Name</th>
+      <th>Password digest</th>
+      <th>Created</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
 
-<% @users.each do |user| %>
-  <tr>
-    <td><%= user.name %></td>
-    <td><%= user.password_digest %></td>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.name %></td>
+      <td class="monospace"><%= user.password_digest %></td>
+      <td><%= user.created_at %></td>
+      <td><%= link_to 'S', user %></td>
+      <td><%= link_to 'E', edit_user_path(user) %></td>
+      <td><%= link_to 'D', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  </table>
 
-<br />
+  <br />
 
-<%= link_to 'New User', new_user_path %>
+  <div class="admin-controls">
+    <%= link_to 'New User', new_user_path %>
+  </div>
+</div>

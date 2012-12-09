@@ -1,12 +1,13 @@
 class DiscussionsController < ApplicationController
+  require 'will_paginate/array'
   skip_before_filter :authorize, only: [:index, :show, :create, :new, :update]
 
   # GET /discussions
   # GET /discussions.json
   def index
-    @discussions = Discussion.all
-    @discussion = Discussion.new
-    @post = Post.new(discussion: @discussion)
+    @discussions = Discussion.all.paginate page: params[:page], order: 'last_post_at desc', per_page: 10
+    #@discussion = Discussion.new
+    #@post = Post.new(discussion: @discussion)
 
     respond_to do |format|
       format.html # index.html.erb

@@ -1,19 +1,29 @@
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<%= will_paginate @discussions %>
 
 <% @discussions.each do |discussion| %>
-  <tr>
-    <td><%= render listing_posts(discussion) %></td>
-    <td><%= link_to 'Show', discussion %></td>
-    <td><%= link_to 'Edit', edit_discussion_path(discussion) %></td>
-    <td><%= link_to 'Destroy', discussion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+  <div class="discussion-listing two-thirds column alpha omega row">
+    <% listing_posts_array = listing_posts(discussion) %>
+    <%= render listing_posts_array.shift if !listing_posts_array.nil? %>
 
-<p><%= will_paginate @discussions %></p>
+    <% if !listing_posts_array.nil? %>
+      <div class="discussion-listing-replies offset-by-one">
+        <% if discussion.posts.size > 3 %>
+          &vellip;
+        <% end %>
+
+        <%= render listing_posts_array %>
+      </div>
+    <% end %>
+
+    <%= discussion.posts.size - 1 %> replies.
+    <%= link_to 'Go to discussion', discussion %>
+
+    <div class="admin-controls sixteen columns alpha omega row">
+        <%= link_to 'D (Discussion)', discussion, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
+  </div>
+
+  <hr>
+<% end %>
+
+<%= will_paginate @discussions %>

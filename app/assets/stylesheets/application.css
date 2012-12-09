@@ -11,3 +11,11 @@
  *= require_self
  *= require_tree .
  */
+
+.monospace {
+    font-family: monospace;
+}
+
+.admin-controls {
+    font-style: italic;
+}

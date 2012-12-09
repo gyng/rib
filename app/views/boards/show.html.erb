@@ -1,7 +1,19 @@
-<%= link_to 'Edit', edit_board_path(@board) if session[:user_id] %>
+<div class="sixteen columns">
+    <div class="two-thirds column">
+        <%= render partial: 'shared/discussion_summary_listing' %>
 
-<p id="notice"><%= notice %></p>
+        <% if session[:user_id] %>
+            <div class="admin-controls row">
+                <%= link_to 'E (Board)', edit_board_path(@board) %>
+            </div>
+        <% end %>
+    </div>
 
-<%= render partial: 'new_discussion_form' %>
+    <div class="board-info one-thirds column">
+        <h2 class="board-title"><%= @board.title %></h2>
 
-<%= render partial: 'shared/discussion_summary_listing' %>
+        <%= render partial: 'new_discussion_form' %>
+
+        <p id="notice"><%= notice %></p>
+    </div>
+</div>

@@ -1,13 +1,15 @@
 <div class="post two-thirds column alpha" id="#p<%= post.id %>">
-    <div class="post-individual-id">
-        <%= link_to "#{post.discussion.id if !post.discussion.nil?}", "#{url_for post.discussion}" %>
-        <%= link_to "#", "#{url_for post.discussion}#p#{post.id}" %>
-        <%= link_to "#{post.id}", "#{url_for post}" %>
-    </div>
+    <div class="post-info">
+        <span class="post-individual-id">
+            <%= link_to "#{post.discussion.id if !post.discussion.nil?}", "#{url_for post.discussion}" %>
+            <%= link_to "#", "#{url_for post.discussion}#p#{post.id}" %>
+            <%= link_to "#{post.id}", "#{url_for post}" %>
+        </span>
 
-    <div class="post-timestamp">
-        <span class="post-timestamp-created-at"><%= Time.at(post.created_at).to_s %></span>
-        <span class="post-timestamp-relative"><%= (Time.at(post.created_at) - Time.now).to_i / 60 %> min</span>
+        <span class="post-timestamp">
+            <span class="post-timestamp-created-at"><%= post.created_at %></span>
+            <span class="post-timestamp-relative"><%= (Time.at(post.created_at) - Time.now).to_i / 60 %> min</span>
+        </span>
     </div>
 
     <% if post.title? %>

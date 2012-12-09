@@ -30,12 +30,12 @@
 </head>
 
 <body>
-    <% if session[:user_id] %>
-        <%= render partial: '/shared/admin_toolbox' %>
-    <% end %>
-
     <div class="container">
         <%= yield %>
     </div>
+
+    <% if session[:user_id] %>
+        <%= render partial: '/shared/admin_toolbox' %>
+    <% end %>
 </body>
 </html>
