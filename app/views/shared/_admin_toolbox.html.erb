@@ -4,7 +4,7 @@
         <%= link_to 'Boards', boards_path %>
         <%= link_to 'Discussions', discussions_path %>
         <%= link_to 'Posts', posts_path %>
-        <%= link_to 'Flagged', flagged_posts_path %>
+        <%= link_to "Flagged (#{Post.where(flagged: true).size})", flagged_posts_path %>
 
         <span class="admin-logout">
             <%= link_to 'Logout', logout_path, method: :delete %>
