@@ -47,6 +47,12 @@
           </div>
         <% end %>
 
+        <% if post.content? %>
+          <div class="post-index-entry-content unexpanded">
+            <%= link_to image_tag(post.content.url(:thumb)), post.content.url %>
+          </div>
+        <% end %>
+
         <% if post.text? %>
           <div class="post-index-entry-text">
             <%= post.text %>
