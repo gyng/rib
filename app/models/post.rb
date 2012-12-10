@@ -33,8 +33,8 @@ class Post < ActiveRecord::Base
   end
 
   def update_discussion_last_post_at
-    discussion.last_post_at = Time.now.to_i
-    discussion.save
+    self.discussion.last_post_at = Time.now.to_i
+    self.discussion.save
   end
 
   def has_text_or_content
