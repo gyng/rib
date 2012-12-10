@@ -38,6 +38,8 @@ See http://rubyonrails.org/deploy for more details
 
 6. Admin actions are in italics. The Admin toolbox is located at the bottom of every page.
 
+7. Configuration options (reply limit, max discussions per board) are located in `/config/config.yml`.
+
 ## rib Uses
 ### CSS Boilerplate
 * Skeleton (http://www.getskeleton.com/) (MIT License available in vendor/assets/stylesheets)
