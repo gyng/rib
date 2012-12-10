@@ -4,11 +4,17 @@
 defaults: &defaults
   max_posts_in_discussion: 400
   max_discussions_in_board: 100
+  prune_by_age: false
+  max_discussions_age: 604800
+    # In seconds
+    # year    - 31536000
+    # 30 days - 2592000
+    # week    - 604800
+    # day     - 86400
+    # hour    - 3600
 
 development:
   <<: *defaults
-  max_posts_in_discussion: 150
-  max_discussions_in_board: 5
 
 test:
   <<: *defaults
