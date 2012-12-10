@@ -51,16 +51,18 @@
             <!-- Quoting posts -->
             <% post.text.scan(/>>(\d+)/).each do |post_id| %>
                 <% if !(p = Post.find_by_id(post_id)).nil? %>
-                    <% post.text.gsub!(/>>#{post_id[0]}/,
+                    <% post.text.gsub!(
+                        />>#{post_id[0]}/,
                         link_to(
                             ">>#{post_id[0]}#{" (Crosslink)" if p.discussion_id != post.discussion_id}",
-                            "#{url_for p.discussion}#p#{p.id}")
+                            "#{url_for p.discussion}#p#{p.id}",
+                            { class: 'post-link'}
                         )
-                    %>
+                    )%>
                 <% end %>
             <% end %>
 
-            <%= sanitize(simple_format(post.text.html_safe), tags: %w(a br p), attributes: %w(href)) %>
+            <%= sanitize(simple_format(post.text.html_safe), tags: %w(a br p), attributes: %w(href class)) %>
         </div>
     <% end %>
 
