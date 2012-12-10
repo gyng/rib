@@ -1,6 +1,8 @@
 <h1>Latest posts</h1>
 
-<%= will_paginate @posts %>
+<div class="row">
+  <%= will_paginate @posts %>
+</div>
 
 <% i = 1 %>
 
@@ -23,20 +25,28 @@
       </div>
     <% end %>
 
-    <div>
+    <div class="post-index-entry-info">
       <% if !post.discussion.nil? && !post.discussion.board.nil? %>
-        <div class="post-index-entry-board">
-          <%= post.discussion.board.title %>
-        </div>
+        <span class="post-index-entry-board">
+          <%= link_to post.discussion.board.title, post.discussion.board %>
+        </span>
       <% end %>
 
-      <div class="post-index-entry-id">
-        <%= post.id %>
-      </div>
+      <span class="post-index-entry-id">
+        <%= link_to post.discussion.id, post.discussion %>
+        <%= link_to "#", "#{url_for post.discussion}#p#{post.id}" %>
+        <%= link_to post.id, post %>
+      </span>
 
       <% if post.title? %>
         <div class="post-index-entry-title">
           <%= post.title %>
+        </div>
+      <% end %>
+
+      <% if post.content? %>
+        <div class="post-index-entry-content unexpanded">
+          <%= link_to image_tag(post.content.url(:thumb)), post.content.url %>
         </div>
       <% end %>
 
@@ -50,4 +60,7 @@
 <% end %>
 
 <div class="clearfix"></div>
-<%= will_paginate @posts %>
+
+<div class="row">
+  <%= will_paginate @posts %>
+</div>

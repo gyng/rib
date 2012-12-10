@@ -16,7 +16,7 @@ class Post < ActiveRecord::Base
   after_destroy :destroy_empty_discussion
 
   # Paperclip
-  has_attached_file :content, styles: { thumb: "350>x350>" }
+  has_attached_file :content, styles: { thumb: "350x350>" }
   validates_attachment_size :content, less_than: 4.megabytes
   before_content_post_process :rename_content
 
