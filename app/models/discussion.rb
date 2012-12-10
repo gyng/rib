@@ -11,4 +11,11 @@ class Discussion < ActiveRecord::Base
       errors.add(:base, "Post limit reached. (#{APP_CONFIG['max_posts_in_discussion']})")
     end
   end
+
+  def posts_count_at_limit
+    return if posts.blank?
+    if posts.size == APP_CONFIG['max_posts_in_discussion']
+      errors.add(:base, "Post limit reached. (#{APP_CONFIG['max_posts_in_discussion']})")
+    end
+  end
 end

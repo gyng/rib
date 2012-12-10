@@ -2,11 +2,13 @@
 # Access configs using APP_CONFIG['setting']
 
 defaults: &defaults
-  max_posts_in_discussion: 150
+  max_posts_in_discussion: 400
+  max_discussions_in_board: 100
 
 development:
   <<: *defaults
   max_posts_in_discussion: 150
+  max_discussions_in_board: 5
 
 test:
   <<: *defaults

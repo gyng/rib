@@ -15,17 +15,21 @@
             <h4>@<%= link_to @discussion.board.title, @discussion.board %></h4>
         </div>
 
-        <div id="discussion-info-time">
-            <div>Last post <%= Time.at(@discussion.last_post_at).utc %></div>
-            <div><%= (Time.now - Time.at(@discussion.last_post_at)).to_i / 60 %> minutes ago</div>
+        <div id="discussion-info-post-count">
+            <%= pluralize(@discussion.posts.count, 'post') %>
         </div>
 
-        <% if @discussion.posts_count_within_bounds.nil? %>
+        <div id="discussion-info-time">
+            <div id="discussion-info-last-post-time">Last post <%= Time.at(@discussion.last_post_at).utc %></div>
+            <div id="discussion-info-last-post-time-relative"><%= (Time.now - Time.at(@discussion.last_post_at)).to_i / 60 %> minutes ago</div>
+        </div>
+
+        <% if !@discussion.posts_count_at_limit %>
             <%= render partial: 'form' %>
             <p id="notice"><%= notice %></p>
         <% else %>
             <p id="notice">
-                <%= @discussion.errors.first[1] %>
+                <%= @discussion.errors.full_messages.join("<br>") %>
                 <%= notice %>
             </p>
         <% end %>

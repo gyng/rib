@@ -2,15 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.discussion-info {
-    /*text-align: right;*/
-}
-
-#discussion-info-id {
-    /*text-align: right;*/
-}
-
-#discussion-info-time {
+#discussion-info-post-count, #discussion-info-time {
 /*    text-align: right;*/
     font-size: 0.75rem;
 }
