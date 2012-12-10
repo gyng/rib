@@ -7,8 +7,12 @@
         </span>
 
         <span class="post-timestamp">
-            <span class="post-timestamp-created-at"><%= post.created_at %></span>
-            <span class="post-timestamp-relative"><%= (Time.at(post.created_at) - Time.now).to_i / 60 %> min</span>
+            <span class="post-timestamp-created-at">
+                <%= post.created_at %>,
+            </span>
+            <span class="post-timestamp-relative">
+                <%= distance_of_time_in_words(Time.at(post.created_at), Time.now) %> ago
+            </span>
         </span>
 
         <span class="post-flag">

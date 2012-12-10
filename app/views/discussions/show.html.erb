@@ -20,8 +20,9 @@
         </div>
 
         <div id="discussion-info-time">
-            <div id="discussion-info-last-post-time">Last post <%= Time.at(@discussion.last_post_at).utc %></div>
-            <div id="discussion-info-last-post-time-relative"><%= (Time.now - Time.at(@discussion.last_post_at)).to_i / 60 %> minutes ago</div>
+            <div id="discussion-info-last-post-time-relative">
+                Lastest <%= distance_of_time_in_words(Time.at(@discussion.last_post_at), Time.now) %> ago
+            </div>
         </div>
 
         <% if !@discussion.posts_count_at_limit %>
