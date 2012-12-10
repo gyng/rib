@@ -18,9 +18,11 @@
     <%= pluralize(discussion.posts.size - 1, 'reply') %>.
     <%= link_to 'Go to discussion', discussion %>
 
-    <div class="admin-controls sixteen columns alpha omega row">
-        <%= link_to 'D (Discussion)', discussion, method: :delete, data: { confirm: 'Are you sure?' } %>
-    </div>
+    <% if session[:user_id] %>
+      <div class="admin-controls sixteen columns alpha omega row">
+          <%= link_to 'D (Discussion)', discussion, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
   </div>
 
   <hr>
