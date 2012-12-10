@@ -3,7 +3,7 @@
 rib is a basic Futaba-style Rails imageboard.<br>
 Contributions and improvements are welcome.
 
-## Features include
+## Features
 * Multiple boards, with discussion limit and aged discussion pruning
 * Inline image expansion
 * Post quoting
@@ -19,9 +19,13 @@ Contributions and improvements are welcome.
 ## Getting Started
 
 1. Install prerequisites
-  * Ruby with RubyGems
-  * Ruby On Rails 3
-  * ImageMagick
+  * Ruby with RubyGems (>=1.9)<br>
+    http://www.ruby-lang.org/en/downloads/
+  * Ruby On Rails 3<br>
+    http://rubyonrails.org/
+  * ImageMagick<br>
+    http://www.imagemagick.org/script/index.php <br>
+    http://sourceforge.net/projects/imagemagick/
 
 2. Clone the repository.
 
