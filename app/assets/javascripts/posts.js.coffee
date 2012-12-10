@@ -6,6 +6,5 @@ $(".post-content").live('click', (e) ->
     e.preventDefault();
     $(this).toggleClass('unexpanded');
     a = $(this).children('a');
-    src = a.attr('href');
-    a.children('img').attr('src', src);
+    a.children('img').attr('src', a.attr('href'));
 );
