@@ -1,0 +1,15 @@
+# rib application configuration
+# Access configs using APP_CONFIG['setting']
+
+defaults: &defaults
+  max_posts_in_discussion: 150
+
+development:
+  <<: *defaults
+  max_posts_in_discussion: 150
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

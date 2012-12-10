@@ -20,8 +20,14 @@
             <div><%= (Time.now - Time.at(@discussion.last_post_at)).to_i / 60 %> minutes ago</div>
         </div>
 
-        <%= render partial: 'form' %>
-
-        <p id="notice"><%= notice %></p>
+        <% if @discussion.posts_count_within_bounds.nil? %>
+            <%= render partial: 'form' %>
+            <p id="notice"><%= notice %></p>
+        <% else %>
+            <p id="notice">
+                <%= @discussion.errors.first[1] %>
+                <%= notice %>
+            </p>
+        <% end %>
     </div>
 </div>

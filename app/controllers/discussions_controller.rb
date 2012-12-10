@@ -73,7 +73,7 @@ class DiscussionsController < ApplicationController
         format.html { redirect_to @discussion, notice: 'Reply added.' }
         format.json { head :no_content }
       else
-        format.html { redirect_to @discussion, notice: 'Invalid post.' }
+        format.html { redirect_to @discussion, notice: @discussion.errors.first[1] }
         format.json { render json: @discussion.errors, status: :unprocessable_entity }
       end
     end
