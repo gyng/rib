@@ -27,15 +27,15 @@
         text-overflow: ellipsis;
     }
 
-    .post-content {
+    .post-content-file-info div {
         float: left;
+        margin: 0 8px 0 0;
     }
 
     .post-original-file-name {
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
-        width: 100%;
         max-width: 350px; /* Thumbnail size is 350x350 */
     }
 

@@ -15,9 +15,20 @@
             <%= link_to 'Flag', "/posts/flag/#{post.id}" , :method => :put %>
         </span>
 
-        <% if post.original_file_name? %>
-            <div class="post-original-file-name" title="<%= post.original_file_name %>">
-                <%= post.original_file_name %>
+
+        <% if post.content? %>
+            <div class="post-content-file-info clearfix">
+                <div class="post-original-file-name" title="<%= post.original_file_name %>">
+                    <%= post.original_file_name %>
+                </div>
+
+                <div class="post-content-file-width">
+                    <%= post.content_width %>px&times;<%= post.content_height %>px
+                </div>
+
+                <div class="post-content-file-size">
+                    <%= number_to_human_size(post.content_file_size) %>
+                </div>
             </div>
         <% end %>
     </div>
@@ -48,8 +59,6 @@
                     %>
                 <% end %>
             <% end %>
-
-            <!-- Quoting text is done in JS -->
 
             <%= sanitize(simple_format(post.text.html_safe), tags: %w(a br p), attributes: %w(href)) %>
         </div>
