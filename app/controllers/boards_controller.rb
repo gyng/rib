@@ -66,8 +66,7 @@ class BoardsController < ApplicationController
 
     respond_to do |format|
       if @board.update_attributes(params[:board])
-        #format.html { redirect_to @board, notice: 'Discussion created.' }
-        format.html { redirect_to @board, notice: params[:board].inspect }
+        format.html { redirect_to @board, notice: 'Discussion created.' }
         format.json { head :no_content }
       else
         format.html { redirect_to @board, notice: 'Failed to create new discussion.' }

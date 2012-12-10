@@ -17,6 +17,7 @@ class Post < ActiveRecord::Base
 
   # Paperclip
   has_attached_file :content, styles: { thumb: "350>x350>" }
+  validates_attachment_size :content, less_than: 4.megabytes
   before_content_post_process :rename_content
 
   validate :has_text_or_content

@@ -48,7 +48,7 @@
                 <% end %>
             <% end %>
 
-            <%= post.text.html_safe %>
+            <%= sanitize post.text.html_safe, tags: %w(a), attributes: %w(href) %>
         </div>
     <% end %>
 
