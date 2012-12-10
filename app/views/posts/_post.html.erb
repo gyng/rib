@@ -14,6 +14,12 @@
         <span class="post-flag">
             <%= link_to 'Flag', "/posts/flag/#{post.id}" , :method => :put %>
         </span>
+
+        <% if post.original_file_name? %>
+            <div class="post-original-file-name" title="<%= post.original_file_name %>">
+                <%= post.original_file_name %>
+            </div>
+        <% end %>
     </div>
 
     <% if post.title? %>
@@ -24,7 +30,7 @@
 
     <% if post.content? %>
         <div class="post-content unexpanded">
-            <%= image_tag post.content.url %>
+            <%= link_to image_tag(post.content.url(:thumb)), post.content.url %>
         </div>
     <% end %>
 

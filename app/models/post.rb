@@ -1,14 +1,22 @@
 class Post < ActiveRecord::Base
   include ActionView::Helpers::UrlHelper # for link_to helper in parse_quoted_posts
 
-  attr_accessible :text, :title, :content, :discussion, :discussion_id, :flagged
+  attr_accessible(
+    :text,
+    :title,
+    :content,
+    :discussion,
+    :discussion_id,
+    :flagged,
+    :original_file_name
+  )
   belongs_to :discussion
   belongs_to :board
   after_create :update_discussion_last_post_at
   after_destroy :destroy_empty_discussion
 
   # Paperclip
-  has_attached_file :content#, styles: { thumb: "250x250#" }
+  has_attached_file :content, styles: { thumb: "350>x350>" }
   before_content_post_process :rename_content
 
   validate :has_text_or_content
@@ -17,6 +25,7 @@ class Post < ActiveRecord::Base
   def rename_content
     extension = File.extname(content.path).downcase
     #name = Digest::MD5.file(content.path).hexdigest
+    self.original_file_name = content.original_filename
     name = Time.now.to_i.to_s
     filename = name + extension
     self.content.instance_write :file_name, filename
