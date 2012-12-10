@@ -37,6 +37,7 @@
     <% if post.text? %>
         <div class="post-text">
             <!-- Very inefficient? Tried doing in model but link_to doesn't work in models. Controller had issues finding paths -->
+            <!-- Quoting posts -->
             <% post.text.scan(/>>(\d+)/).each do |post_id| %>
                 <% if !(p = Post.find_by_id(post_id)).nil? %>
                     <% post.text.gsub!(/>>#{post_id[0]}/,
@@ -48,7 +49,9 @@
                 <% end %>
             <% end %>
 
-            <%= sanitize post.text.html_safe, tags: %w(a), attributes: %w(href) %>
+            <!-- Quoting text is done in JS -->
+
+            <%= sanitize(simple_format(post.text.html_safe), tags: %w(a br p), attributes: %w(href)) %>
         </div>
     <% end %>
 
