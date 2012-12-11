@@ -36,7 +36,7 @@
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
-        max-width: 350px; /* Thumbnail size is 350x350 */
+        max-width: 285px; /* Small responsive thumbnail size is around 285x285 */
     }
 
     .unexpanded img {
