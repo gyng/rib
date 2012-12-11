@@ -10,6 +10,17 @@
         color: #777;
     }
 
+    .post-timestamp-created-at, .post-timestamp-relative {
+        white-space: nowrap;
+    }
+
+    .post-original-file-name {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        max-width: 285px; /* Small responsive thumbnail size is around 285x285 */
+    }
+
     .post-content {
         float: left;
         margin: 0 15px 0 0;
@@ -30,13 +41,6 @@
     .post-content-file-info div {
         float: left;
         margin: 0 8px 0 0;
-    }
-
-    .post-original-file-name {
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-        max-width: 285px; /* Small responsive thumbnail size is around 285x285 */
     }
 
     .unexpanded img {

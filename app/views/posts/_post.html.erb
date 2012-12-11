@@ -6,19 +6,18 @@
             <%= link_to "#{post.id}", "#{url_for post}" %>
         </span>
 
-        <span class="post-timestamp">
+        <span class="post-flag">
+            <%= link_to '!', "/posts/flag/#{post.id}", :method => :put, data: { confirm: "Flag post #{post.id}?" } %>
+        </span>
+
+        <div class="post-timestamp">
             <span class="post-timestamp-created-at">
                 <%= post.created_at %>,
             </span>
             <span class="post-timestamp-relative">
                 <%= distance_of_time_in_words(Time.at(post.created_at), Time.now) %> ago
             </span>
-        </span>
-
-        <span class="post-flag">
-            <%= link_to 'Flag', "/posts/flag/#{post.id}" , :method => :put %>
-        </span>
-
+        </div>
 
         <% if post.content? %>
             <div class="post-content-file-info clearfix">
