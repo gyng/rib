@@ -1,26 +1,19 @@
 <div class="sixteen columns">
     <div class="two-thirds column">
         <%= render @discussion.posts %>
-
-        <% if session[:user_id] %>
-            <div class="admin-controls row">
-                <%= link_to 'E (Discussion)', edit_board_discussion_path(@discussion) %>
-                <%= link_to 'D (Discussion)', [@discussion.board, @discussion], method: :delete, data: { confirm: 'Are you sure?' } %>
-            </div>
-        <% end %>
     </div>
 
-    <div class="discussion-info one-thirds column">
-        <div id="discussion-info-id">
+    <div class="discussion-info one-third column alpha omega">
+        <div id="discussion-info-id" class="one-third column">
             <h3>d<%= @discussion.id %></h3>
             <h4>@<%= link_to @discussion.board.title, @discussion.board %></h4>
         </div>
 
-        <div id="discussion-info-post-count">
+        <div id="discussion-info-post-count" class="one-third column">
             <%= pluralize(@discussion.posts.count, 'post') %>
         </div>
 
-        <div id="discussion-info-time">
+        <div id="discussion-info-time" class="one-third column">
             <div id="discussion-info-last-post-time-relative">
                 Lastest <%= distance_of_time_in_words(Time.at(@discussion.last_post_at), Time.now) %> ago
             </div>
@@ -34,6 +27,13 @@
                 <%= @discussion.errors.full_messages.join("<br>") %>
                 <%= notice %>
             </p>
+        <% end %>
+
+        <% if session[:user_id] %>
+            <div class="admin-controls row">
+                <%= link_to 'E (Discussion)', edit_board_discussion_path(@discussion) %>
+                <%= link_to 'D (Discussion)', [@discussion.board, @discussion], method: :delete, data: { confirm: 'Are you sure?' } %>
+            </div>
         <% end %>
     </div>
 </div>
