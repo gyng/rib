@@ -68,7 +68,12 @@
                         link_to(
                             ">>#{post_id[0]}\
                                 #{if p.discussion_id != post.discussion_id
-                                    p.id == p.discussion.posts.first.id ? "(Cross OP)" : "(Cross)"
+                                    if p.discussion.board != post.discussion.board
+                                        board = p.discussion.board.short_form
+                                        p.id == p.discussion.posts.first.id ? "(#{board} cross OP)" : "(#{board} cross)"
+                                    else
+                                        p.id == p.discussion.posts.first.id ? "(Cross OP)" : "(Cross)"
+                                    end
                                 elsif p.id == p.discussion.posts.first.id
                                     "(OP)"
                                 end

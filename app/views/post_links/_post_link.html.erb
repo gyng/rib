@@ -6,7 +6,12 @@
     link_to(
         ">>#{post_link.post_from}
             #{if pt.discussion_id != pf.discussion_id
-                pf.id == pf.discussion.posts.first.id ? " (Cross OP)" : " (Cross)"
+                if pt.discussion.board != pf.discussion.board
+                    board = pf.discussion.board.short_form
+                    pf.id == pf.discussion.posts.first.id ? " (#{board} cross OP)" : " (#{board} cross)"
+                else
+                    pf.id == pf.discussion.posts.first.id ? " (Cross OP)" : " (Cross)"
+                end
             end}",
         "#{url_for [pf.discussion.board, pf.discussion]}#p#{pf.id}",
         { class: 'post-backquote'}
