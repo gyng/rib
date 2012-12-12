@@ -15,11 +15,13 @@
       </div>
     <% end %>
 
-    <%= pluralize(discussion.posts.size - 1, 'reply') %>.
+    <%= pluralize(discussion.posts.size - 1, 'reply') %>.<br>
     <%= link_to 'Go to discussion', [discussion.board, discussion] %>
 
     <% if session[:user_id] %>
       <div class="admin-controls sixteen columns alpha omega row">
+          <%= link_to 'E (Discussion)', edit_board_discussion_path(discussion.board, discussion) %>
+          &nbsp;
           <%= link_to 'D (Discussion)', [discussion.board, discussion], method: :delete, data: { confirm: 'Are you sure?' } %>
       </div>
     <% end %>

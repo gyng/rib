@@ -85,7 +85,6 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        #format.html { redirect_to @post, notice: 'Post was successfully created.' }
         format.html { redirect_to :back, notice: 'Post was successfully created.' }
         format.json { render json: @post, status: :created, location: @post }
       else
@@ -105,7 +104,7 @@ class PostsController < ApplicationController
         format.html { redirect_to :back, notice: 'Post was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render action: "edit", notice: 'Post not updated.' }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end

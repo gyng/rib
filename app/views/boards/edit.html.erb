@@ -1,6 +1,6 @@
-<h1>Editing board</h1>
+<h1>Editing board <%= link_to @board.title, @board %></h1>
+<div class="sixteen columns row">
+    <%= link_to 'Back', :back %>
+</div>
 
 <%= render 'form' %>
-
-<%= link_to 'Show', @board %> |
-<%= link_to 'Back', boards_path %>
