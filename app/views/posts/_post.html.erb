@@ -59,14 +59,20 @@
 
     <% if post.text? %>
         <div class="post-text">
-            <!-- Very inefficient? Tried doing in model but link_to doesn't work in models. Controller had issues finding paths -->
             <!-- Quoting posts -->
+            <!-- Very inefficient? Duplicate query in post model for PostLink creation -->
             <% post.text.scan(/>>(\d+)/).each do |post_id| %>
                 <% if !(p = Post.find_by_id(post_id)).nil? %>
                     <% post.text.gsub!(
                         />>#{post_id[0]}/,
                         link_to(
-                            ">>#{post_id[0]}#{" (Cross)" if p.discussion_id != post.discussion_id}",
+                            ">>#{post_id[0]}\
+                                #{if p.discussion_id != post.discussion_id
+                                    p.id == p.discussion.posts.first.id ? "(Cross OP)" : "(Cross)"
+                                elsif p.id == p.discussion.posts.first.id
+                                    "(OP)"
+                                end
+                                }",
                             "#{url_for p.discussion}#p#{p.id}",
                             { class: 'post-link'}
                         )
