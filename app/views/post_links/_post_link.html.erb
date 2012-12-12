@@ -4,7 +4,7 @@
 
 <%=
     link_to(
-        ">>#{post_link.post_from}\
+        ">>#{post_link.post_from}
             #{if pt.discussion_id != pf.discussion_id
                 pt.id == pt.discussion.posts.first.id ? " (Cross OP)" : " (Cross)"
             end}",
