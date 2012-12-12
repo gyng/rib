@@ -23,7 +23,7 @@ class Post < ActiveRecord::Base
 
   # Paperclip
   has_attached_file :content, styles: { thumb: "350x350>" }
-  validates_attachment_size :content, less_than: 4.megabytes
+  validates_attachment_size :content, less_than: APP_CONFIG['max_content_size_mb'].megabytes
   before_content_post_process :save_original_file_information
   before_content_post_process :rename_content
 
