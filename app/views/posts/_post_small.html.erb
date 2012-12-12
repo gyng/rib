@@ -1,0 +1,90 @@
+<div class="post one-third column alpha" id="p<%= post.id %>">
+    <div class="post-info">
+        <span class="post-index-board-short-form">
+            <%= link_to post.discussion.board.short_form %>
+        </span>
+
+        <span class="post-individual-id">
+            <%= link_to "#{post.discussion.id if !post.discussion.nil?}", [post.discussion.board, post.discussion] %>
+            <%= link_to "#", "#{url_for([post.discussion.board, post.discussion])}#p#{post.id}" %>
+            <%= link_to "#{post.id}", "#{url_for post}" %>
+        </span>
+
+        <span class="post-flag">
+            <%= link_to '!', "/posts/flag/#{post.id}", :method => :put, data: { confirm: "Flag post #{post.id}?" } %>
+        </span>
+
+        <% backquotes = PostLink.where(["post_to = ?", post.id]).all %>
+        <% unless backquotes.blank? %>
+            <span class="post-backquotes">
+                <%= render backquotes %>
+            </span>
+            <!-- Quoted posts -->
+            <!--<div><%= PostLink.where(["post_from = ?", post.id]).all %></div>-->
+        <% end %>
+
+        <div class="post-timestamp">
+            <span class="post-timestamp-relative">
+                <%= distance_of_time_in_words(Time.at(post.created_at), Time.now) %> ago
+            </span>
+        </div>
+
+        <% if post.content? %>
+            <div class="post-index-content-file-info clearfix">
+                <span class="post-content-file-width">
+                    <%= post.content_width %>px&times;<%= post.content_height %>px
+                </span>
+
+                <span class="post-content-file-size">
+                    <%= number_to_human_size(post.content_file_size) %>
+                </span>
+            </div>
+        <% end %>
+    </div>
+
+    <% if post.title? %>
+        <h5 class="post-title">
+            <%= post.title %>
+        </h5>
+    <% end %>
+
+    <% if post.content? %>
+        <div class="post-index-entry-content">
+            <%= link_to image_tag(post.content.url(:thumb)), post.content.url %>
+        </div>
+    <% end %>
+
+    <% if post.text? %>
+        <div class="post-text">
+            <!-- Quoting posts -->
+            <!-- Very inefficient? Duplicate query in post model for PostLink creation -->
+            <% post.text.scan(/>>(\d+)/).each do |post_id| %>
+                <% if !(p = Post.find_by_id(post_id)).nil? %>
+                    <% post.text.gsub!(
+                        />>#{post_id[0]}/,
+                        link_to(
+                            ">>#{post_id[0]}\
+                                #{if p.discussion_id != post.discussion_id
+                                    p.id == p.discussion.posts.first.id ? "(Cross OP)" : "(Cross)"
+                                elsif p.id == p.discussion.posts.first.id
+                                    "(OP)"
+                                end
+                                }",
+                            "#{url_for [p.discussion.board, p.discussion]}#p#{p.id}",
+                            { class: 'post-link'}
+                        )
+                    )%>
+                <% end %>
+            <% end %>
+
+            <%= sanitize(simple_format(post.text.html_safe), tags: %w(a br p), attributes: %w(href class)) %>
+        </div>
+    <% end %>
+
+    <% if session[:user_id] %>
+        <div class="admin-controls">
+            <%= link_to 'E', edit_post_path(post) %>
+            <%= link_to 'D', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
+    <% end %>
+</div>

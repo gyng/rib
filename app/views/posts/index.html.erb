@@ -4,62 +4,15 @@
   <%= will_paginate @posts %>
 </div>
 
-<% i = 1 %>
+<% i = 0 %>
 
 <% @posts.each do |post| %>
-  <% if i % 3 == 1 %>
-    <% if i > 1 %><hr><% end %>
-    <div class="post-index-entry one-third column alpha">
-  <% elsif i % 3 == 0 %>
-    <div class="post-index-entry one-third column omega">
-  <% else %>
-    <div class="post-index-entry one-third column">
+  <%= render partial: 'post_small', locals: {post: post} %>
+  <% if (i += 1) % 3 == 0 %>
+    <hr>
   <% end %>
-  <% i += 1 %>
-
-    <% if session[:user_id] %>
-      <div class="admin-controls">
-        <span><%= link_to 'Show', post %></span>
-        <span><%= link_to 'Edit', edit_post_path(post) %></span>
-        <span><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></span>
-      </div>
-    <% end %>
-
-    <div class="post-index-entry-info">
-      <% if !post.discussion.nil? && !post.discussion.board.nil? %>
-        <span class="post-index-entry-board">
-          <%= link_to post.discussion.board.title, post.discussion.board %>
-        </span>
-      <% end %>
-
-      <span class="post-index-entry-id">
-        <%= link_to post.discussion.id, post.discussion %>
-        <%= link_to "#", "#{url_for post.discussion}#p#{post.id}" %>
-        <%= link_to post.id, post %>
-      </span>
-
-      <% if post.title? %>
-        <div class="post-index-entry-title">
-          <%= post.title %>
-        </div>
-      <% end %>
-
-      <% if post.content? %>
-        <div class="post-index-entry-content unexpanded">
-          <%= link_to image_tag(post.content.url(:thumb)), post.content.url %>
-        </div>
-      <% end %>
-
-      <% if post.text? %>
-        <div class="post-index-entry-text">
-          <%= post.text %>
-        </div>
-      <% end %>
-    </div>
-  </div>
 <% end %>
 
-<div class="clearfix"></div>
 
 <div class="row">
   <%= will_paginate @posts %>
