@@ -7,10 +7,6 @@
     <%= notice %>
 </div>
 
-<%= render 'form' %>
+<%= render @post %>
 
-<% if @post.content? %>
-    <%= link_to image_tag(@post.content.url(:thumb)), @post.content.url %>
-<% else %>
-    <p>No content.</p>
-<% end %>
+<%= render 'form' %>
