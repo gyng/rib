@@ -3,6 +3,7 @@ require 'test_helper'
 class PostsControllerTest < ActionController::TestCase
   setup do
     @post = posts(:one)
+    @request.env['HTTP_REFERER'] = '/posts'
   end
 
   test "should get index" do

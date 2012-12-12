@@ -3,12 +3,12 @@ require 'test_helper'
 class DiscussionsControllerTest < ActionController::TestCase
   setup do
     @discussion = discussions(:one)
+    @request.env['HTTP_REFERER'] = '/discussions'
   end
 
   test "should get index" do
     get :index
     assert_response :success
-    assert_not_nil assigns(:discussions)
   end
 
   test "should get new" do

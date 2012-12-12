@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  name: MyString
-  password_digest: MyString
+  name: alice
+  password_digest: <%= BCrypt::Password.create('letmein') %>
 
 two:
-  name: MyString
-  password_digest: MyString
+  name: eve
+  password_digest: donotletmein
