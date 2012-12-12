@@ -1,4 +1,7 @@
 Rib::Application.routes.draw do
+  resources :post_links
+
+
   get "admin" => "admin#index"
 
   controller :sessions do

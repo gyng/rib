@@ -1,6 +1,4 @@
 class Post < ActiveRecord::Base
-  include ActionView::Helpers::UrlHelper # for link_to helper in parse_quoted_posts
-
   attr_accessible(
     :text,
     :title,
@@ -13,9 +11,14 @@ class Post < ActiveRecord::Base
     :content_file_size,
     :content_content_type
   )
+
   belongs_to :discussion
   belongs_to :board
+  has_many :post_links, dependent: :destroy
+
   after_create :update_discussion_last_post_at
+  after_update :update_discussion_last_post_at
+  after_create :parse_post_links
   after_destroy :destroy_empty_discussion
 
   # Paperclip
@@ -45,6 +48,14 @@ class Post < ActiveRecord::Base
   def update_discussion_last_post_at
     self.discussion.last_post_at = Time.now.to_i
     self.discussion.save
+  end
+
+  def parse_post_links
+    self.text.scan(/>>(\d+)/).each do |pid|
+      if !(Post.find_by_id(pid)).nil?
+        self.post_links.create(post_from: id, post_to: pid.first)
+      end
+    end
   end
 
   def has_text_or_content

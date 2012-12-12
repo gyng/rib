@@ -1,0 +1,11 @@
+<!-- Too many queries! -->
+<% pf = Post.find(post_link.post_from) %>
+<% pt = Post.find(post_link.post_to) %>
+
+<%=
+    link_to(
+        ">>#{post_link.post_from}#{" (Cross)" if pt.discussion_id != pf.discussion_id}",
+        "#{url_for pf.discussion}#p#{pf.id}",
+        { class: 'post-backquote'}
+    )
+%>

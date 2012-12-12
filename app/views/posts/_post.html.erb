@@ -10,6 +10,15 @@
             <%= link_to '!', "/posts/flag/#{post.id}", :method => :put, data: { confirm: "Flag post #{post.id}?" } %>
         </span>
 
+        <% backquotes = PostLink.where(["post_to = ?", post.id]).all %>
+        <% unless backquotes.blank? %>
+            <span class="post-backquotes">
+                <%= render backquotes %>
+            </span>
+            <!-- Quoted posts -->
+            <!--<div><%= PostLink.where(["post_from = ?", post.id]).all %></div>-->
+        <% end %>
+
         <div class="post-timestamp">
             <span class="post-timestamp-created-at">
                 <%= post.created_at %>,
@@ -57,7 +66,7 @@
                     <% post.text.gsub!(
                         />>#{post_id[0]}/,
                         link_to(
-                            ">>#{post_id[0]}#{" (Crosslink)" if p.discussion_id != post.discussion_id}",
+                            ">>#{post_id[0]}#{" (Cross)" if p.discussion_id != post.discussion_id}",
                             "#{url_for p.discussion}#p#{p.id}",
                             { class: 'post-link'}
                         )

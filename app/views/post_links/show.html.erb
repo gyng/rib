@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Post from:</b>
+  <%= @post_link.post_from %>
+</p>
+
+<p>
+  <b>Post to:</b>
+  <%= @post_link.post_to %>
+</p>
+
+
+<%= link_to 'Edit', edit_post_link_path(@post_link) %> |
+<%= link_to 'Back', post_links_path %>
