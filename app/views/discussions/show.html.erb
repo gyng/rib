@@ -4,7 +4,8 @@
 
         <% if session[:user_id] %>
             <div class="admin-controls row">
-                <%= link_to 'E (Discussion)', edit_discussion_path(@discussion) %>
+                <%= link_to 'E (Discussion)', edit_board_discussion_path(@discussion) %>
+                <%= link_to 'D (Discussion)', [@discussion.board, @discussion], method: :delete, data: { confirm: 'Are you sure?' } %>
             </div>
         <% end %>
     </div>

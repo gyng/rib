@@ -1,4 +1,5 @@
-<%= form_for(@discussion, html: { class: 'discussion-reply-form', multipart: true }) do |d| %>
+<%=  %>
+<%= form_for([@discussion.board, @discussion], html: { class: 'discussion-reply-form', multipart: true }) do |d| %>
   <% if @discussion.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@discussion.errors.count, "error") %> prohibited this discussion from being saved:</h2>

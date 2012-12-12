@@ -70,7 +70,7 @@ class DiscussionsController < ApplicationController
 
     respond_to do |format|
       if @discussion.update_attributes(params[:discussion])
-        format.html { redirect_to @discussion, notice: 'Reply added.' }
+        format.html { redirect_to :back, notice: 'Reply added.' }
         format.json { head :no_content }
       else
         format.html { redirect_to @discussion, notice: @discussion.errors.first[1] }

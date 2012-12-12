@@ -1,8 +1,8 @@
 <div class="post two-thirds column alpha omega" id="p<%= post.id %>">
     <div class="post-info">
         <span class="post-individual-id">
-            <%= link_to "#{post.discussion.id if !post.discussion.nil?}", "#{url_for post.discussion}" %>
-            <%= link_to "#", "#{url_for post.discussion}#p#{post.id}" %>
+            <%= link_to "#{post.discussion.id if !post.discussion.nil?}", [post.discussion.board, post.discussion] %>
+            <%= link_to "#", "#{url_for([post.discussion.board, post.discussion])}#p#{post.id}" %>
             <%= link_to "#{post.id}", "#{url_for post}" %>
         </span>
 
@@ -73,7 +73,7 @@
                                     "(OP)"
                                 end
                                 }",
-                            "#{url_for p.discussion}#p#{p.id}",
+                            "#{url_for [p.discussion.board, p.discussion]}#p#{p.id}",
                             { class: 'post-link'}
                         )
                     )%>

@@ -13,11 +13,9 @@ Rib::Application.routes.draw do
   resources :users
 
 
-  resources :boards
-
-
-  resources :discussions
-
+  resources :boards do
+    resources :discussions
+  end
 
   resources :posts do
     collection do
