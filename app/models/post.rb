@@ -30,6 +30,7 @@ class Post < ActiveRecord::Base
   validate :has_text_or_content
   validate :discussion, presence: true
   validate :text, :length => { :maximum => APP_CONFIG['max_text_length'] }
+  validate :title, :length => { :maximum => APP_CONFIG['max_title_length'] }
 
   def save_original_file_information
     geo = Paperclip::Geometry.from_file(content.queued_for_write[:original])

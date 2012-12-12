@@ -32,6 +32,8 @@
 
     .post-title {
         font-weight: bold;
+        word-wrap: break-word;
+        overflow: hidden;
     }
 
     .post-text {
