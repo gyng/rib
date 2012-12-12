@@ -1,5 +1,5 @@
 class Board < ActiveRecord::Base
-  attr_accessible :title, :discussions_attributes
+  attr_accessible :title, :discussions_attributes, :short_form
   has_many :discussions, dependent: :destroy
   has_many :posts, dependent: :destroy
   accepts_nested_attributes_for :discussions
@@ -7,6 +7,11 @@ class Board < ActiveRecord::Base
   after_update :prune_old_discussions
   after_update :prune_aged_discussions if APP_CONFIG['prune_by_age']
   validate :discussions_count_within_bounds
+  validates_presence_of :short_form
+
+  def to_param
+    "#{short_form.parameterize}"
+  end
 
   def discussions_count_within_bounds
     return if discussions.blank?

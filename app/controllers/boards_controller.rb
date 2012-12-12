@@ -15,7 +15,8 @@ class BoardsController < ApplicationController
   # GET /boards/1
   # GET /boards/1.json
   def show
-    @board = Board.find(params[:id])
+    @board = Board.find_by_short_form(params[:id])
+
     @discussions = @board.discussions.paginate page: params[:page], order: 'last_post_at desc', per_page: 10
     @discussion = Discussion.new(board: @board)
     @post = Post.new(discussion: @discussion)
@@ -40,7 +41,7 @@ class BoardsController < ApplicationController
 
   # GET /boards/1/edit
   def edit
-    @board = Board.find(params[:id])
+    @board = Board.find_by_short_form(params[:id])
   end
 
   # POST /boards
@@ -62,7 +63,7 @@ class BoardsController < ApplicationController
   # PUT /boards/1
   # PUT /boards/1.json
   def update
-    @board = Board.find(params[:id])
+    @board = Board.find_by_short_form(params[:id])
 
     respond_to do |format|
       if @board.update_attributes(params[:board])
@@ -78,7 +79,7 @@ class BoardsController < ApplicationController
   # DELETE /boards/1
   # DELETE /boards/1.json
   def destroy
-    @board = Board.find(params[:id])
+    @board = Board.find_by_short_form(params[:id])
     @board.destroy
 
     respond_to do |format|
