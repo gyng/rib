@@ -1,4 +1,5 @@
-<h1>Editing <%= link_to "#{@post.discussion.board.short_form}-#{@post.discussion.id}##{@post.id}", @post %></h1>
+<% @title = "Editing #{@post.discussion.board.short_form}-d#{@post.discussion.id}##{@post.id}" %>
+<h1>Editing <%= link_to "#{@post.discussion.board.short_form}-d#{@post.discussion.id}##{@post.id}", @post %></h1>
 <div class="sixteen columns row">
     <%= link_to 'Back', :back %>
 </div>

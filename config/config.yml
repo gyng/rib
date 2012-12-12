@@ -15,6 +15,7 @@ defaults: &defaults
   max_content_size_mb: 4
   max_text_length: 2500
   max_title_length: 100
+  application_name: 'rib'
 
 development:
   <<: *defaults

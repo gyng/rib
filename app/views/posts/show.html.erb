@@ -1,3 +1,5 @@
+<% @title = "#{@post.discussion.board.short_form}-#{@post.discussion.id}##{@post.id} - Threaded" %>
+
 <% backquotes = PostLink.where(["post_to = ?", @post.id]).all %>
 <% backquotes_posts = Array.new %>
 <% backquotes.each do |post_link| %>
