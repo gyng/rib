@@ -13,6 +13,7 @@ defaults: &defaults
   prune_by_age: false
   max_discussions_age: 604800
   max_content_size_mb: 4
+  max_text_length: 2500
 
 development:
   <<: *defaults
