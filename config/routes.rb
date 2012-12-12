@@ -17,6 +17,8 @@ Rib::Application.routes.draw do
     resources :discussions
   end
 
+  match 'discussions' => 'discussions#index'
+
   resources :posts do
     collection do
       put 'flag/:id' => 'posts#flag'
