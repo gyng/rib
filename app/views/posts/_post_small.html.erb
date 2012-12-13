@@ -1,7 +1,9 @@
-<div class="post one-third column alpha" id="p<%= post.id %>">
+<div class="post post-index one-third column alpha omega" id="p<%= post.id %>">
     <div class="post-info">
         <span class="post-index-board-short-form">
-            <%= link_to post.discussion.board.short_form %>
+            <% unless defined? hide_board && hide_board %>
+                <%= link_to post.discussion.board.short_form %>
+            <% end %>
         </span>
 
         <span class="post-individual-id">

@@ -77,6 +77,13 @@
  background-color: #cde;
 }
 
+.post-index > .post-text {
+    max-height: 300px;
+    overflow: hidden;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+}
+
 .post-index-entry-content img {
     max-height: 250px;
     max-width: 250px;

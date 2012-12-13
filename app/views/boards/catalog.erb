@@ -1,0 +1,32 @@
+<% @title = "#{@board.title} - Catalog" %>
+<div class="sixteen columns">
+    <h1><%= link_to @board.title, @board %> Catalog</h1>
+
+    <% i = 0 %>
+
+    <% @discussions.each do |d| %>
+        <div class="one-thirds column alpha omega row">
+            <%= render partial: '/posts/post_small', locals: { post: d.posts.first, hide_board: true } %>
+
+            <div class="catalog-dicussion-info">
+                <%= pluralize(d.posts.count, "post") %>,
+
+                <% image_count = 0 %>
+                <% d.posts.each do |p| %>
+                    <% image_count += 1 if p.content? %>
+                <% end %>
+                <%= pluralize(image_count, "image") %>.
+            </div>
+        </div>
+
+        <% if (i += 1) % 3 == 0 %>
+            <hr>
+        <% end %>
+    <% end %>
+
+    <% if session[:user_id] %>
+        <div class="admin-controls row">
+            <%= link_to 'E (Board)', edit_board_path(@board) %>
+        </div>
+    <% end %>
+</div>

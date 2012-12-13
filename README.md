@@ -4,9 +4,10 @@ rib is a basic Futaba-style Rails imageboard.<br>
 Contributions and improvements are welcome.
 
 ## Features
-* Multiple boards, with discussion limit and aged discussion pruning
+* Multiple boards (with discussion limit and aged discussion pruning)
+* Per-board, posts and discussions catalogs
 * Inline image expansion
-* Post quoting, with backquotes
+* Post quoting with backquotes
 * Admin interface with post reporting
 
 ### To-do

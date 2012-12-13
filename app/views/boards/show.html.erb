@@ -12,9 +12,8 @@
 
     <div class="board-info one-thirds column">
         <h2 class="board-title"><%= @board.title %></h2>
-
+        <p><%= link_to "Catalog", board_catalog_path(@board) %></p>
         <%= render partial: 'new_discussion_form' %>
-
         <p id="notice"><%= notice %></p>
     </div>
 </div>

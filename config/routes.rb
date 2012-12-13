@@ -14,6 +14,7 @@ Rib::Application.routes.draw do
 
 
   resources :boards do
+    get 'catalog' => 'boards#catalog'
     resources :discussions
   end
 

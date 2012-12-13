@@ -1,5 +1,5 @@
 class BoardsController < ApplicationController
-  skip_before_filter :authorize, only: [:index, :show, :update]
+  skip_before_filter :authorize, only: [:index, :show, :update, :catalog]
 
   # GET /boards
   # GET /boards.json
@@ -9,6 +9,17 @@ class BoardsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @boards }
+    end
+  end
+
+  def catalog
+    @board = Board.find_by_short_form(params[:board_id])
+    @first_posts = Array.new
+    @discussions = @board.discussions.order('last_post_at desc')
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @first_posts }
     end
   end
 
