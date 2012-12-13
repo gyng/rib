@@ -15,7 +15,14 @@
       </div>
     <% end %>
 
-    <%= pluralize(discussion.posts.size - 1, 'reply') %>.<br>
+    <%= pluralize(discussion.posts.size - 1, 'reply') %>,
+
+    <% image_count = 0 %>
+    <% discussion.posts.each do |p| %>
+        <% image_count += 1 if p.content? %>
+    <% end %>
+    <%= pluralize(image_count, "image") %>.<br>
+
     <%= link_to 'Go to discussion', [discussion.board, discussion] %>
 
     <% if session[:user_id] %>
