@@ -5,7 +5,9 @@ Contributions and improvements are welcome.
 
 ## Features
 * Multiple boards (with discussion limit and aged discussion pruning)
-* Per-board, posts and discussions catalogs
+* Board catalogs
+* Posts and discussions indices
+* Single post threaded view
 * Inline image expansion
 * Post quoting with backquotes
 * Admin interface with post reporting
