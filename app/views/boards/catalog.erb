@@ -15,7 +15,10 @@
                 <% d.posts.each do |p| %>
                     <% image_count += 1 if p.content? %>
                 <% end %>
-                <%= pluralize(image_count, "image") %>.
+
+                <% if image_count > 0 %>
+                    <%= pluralize(image_count, "image") %>.
+                <% end %>
             </div>
         </div>
 
