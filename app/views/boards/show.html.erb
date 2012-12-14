@@ -1,6 +1,6 @@
 <% @title = @board.title %>
 <div class="sixteen columns">
-    <div class="two-thirds column row">
+    <div class="two-thirds column alpha row">
         <%= render partial: 'shared/discussion_summary_listing' %>
 
         <% if session[:user_id] %>
@@ -10,7 +10,7 @@
         <% end %>
     </div>
 
-    <div class="board-info one-thirds column">
+    <div class="board-info one-thirds column omega">
         <h2 class="board-title"><%= @board.title %></h2>
         <p><%= link_to "Catalog", board_catalog_path(@board) %></p>
         <%= render partial: 'new_discussion_form' %>

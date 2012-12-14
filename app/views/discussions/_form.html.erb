@@ -12,7 +12,7 @@
   <% end %>
 
   <%= d.fields_for :posts, @post do |p| %>
-    <div class="one-third column row">
+    <div class="one-third column alpha row">
       <div class="field">
         <%= p.label :title %>
         <%= p.text_field :title, :maxlength => APP_CONFIG['max_title_length'], placeholder: "The Weather" %>

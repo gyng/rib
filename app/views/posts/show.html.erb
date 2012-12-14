@@ -10,9 +10,7 @@
 
 <p id="notice"><%= notice %></p>
 
-<h1>#<%= @post.id %> threaded view</h1>
-
-<%= render @post %>
+<h1 class="two-thirds column">#<%= @post.id %> threaded view</h1>
 
 <div class="post-thread-info one-thirds column">
     <div id="post-thread-info-id">
@@ -31,4 +29,7 @@
     </div>
 </div>
 
-<%= render backquotes_posts %>
+<div class="two-thirds column">
+    <%= render @post %>
+    <%= render backquotes_posts %>
+</div>
