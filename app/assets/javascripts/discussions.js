@@ -25,9 +25,6 @@ function updatePosts(poll_interval, poll_attempts, poll_increment, max_increment
     }
 
     $("#discussion-info-updating-in-seconds").html((poll_interval + poll_attempts * poll_increment)/1000);
-
-    alert(poll_interval + poll_attempts * poll_increment);
-
     setTimeout(function() { updatePosts(poll_interval, poll_attempts, poll_increment, max_increments); }, poll_interval + poll_attempts * poll_increment);
 }
 
