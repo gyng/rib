@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  skip_before_filter :authorize, only: [:show, :new, :create, :flag, :index]
+  skip_before_filter :authorize, only: [:show, :new, :create, :flag, :index, :poll]
 
   # GET /posts
   # GET /posts.json
@@ -9,6 +9,15 @@ class PostsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @posts }
+    end
+  end
+
+  def poll
+    @posts = Post.where("discussion_id = ? AND id > ?", params[:discussion_id], params[:after])
+
+    unless @posts.empty?
+      @post_count = @posts.count
+      @last_post_at = @posts.last.created_at
     end
   end
 

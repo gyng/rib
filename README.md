@@ -5,6 +5,7 @@ Contributions and improvements are welcome.
 
 ## Features
 * Multiple boards (with discussion limit and aged discussion pruning)
+* Periodic, automatic discussion updating
 * Board catalogs
 * Posts and discussions indices
 * Single post threaded view
@@ -14,7 +15,6 @@ Contributions and improvements are welcome.
 
 ### To-do
 * Text quotes (>quoted text)
-* Periodic, automatic discussion update
 * Tests
 * Optimisations
 
@@ -41,7 +41,7 @@ See http://rubyonrails.org/deploy for more details.
 
 6. Admin actions are in italics. The Admin toolbox is located at the bottom of every page.
 
-7. Configuration options (reply limit, max discussions per board) are located in `/config/config.yml`.
+7. Configuration options (eg. reply limit, max discussions per board) are located in `/config/config.yml`.
 
 ## rib Uses
 ### CSS boilerplate

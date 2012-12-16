@@ -22,6 +22,7 @@ Rib::Application.routes.draw do
 
   resources :posts do
     collection do
+      get 'poll' => 'posts#poll'
       put 'flag/:id' => 'posts#flag'
       put 'unflag/:id' => 'posts#unflag'
       get 'flagged'

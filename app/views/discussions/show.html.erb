@@ -1,10 +1,14 @@
 <% @title = "#{@post.discussion.board.short_form}-d#{@post.discussion.id}" %>
 <div class="sixteen columns">
     <div class="two-thirds column alpha">
-        <%= render @discussion.posts %>
+        <div class="two-thirds column alpha omega posts" id="posts">
+            <%= render @discussion.posts %>
+        </div>
+
+        <div class="two-thirds column alpha omega row" id="discussion-update-timer">Updating in <span id="discussion-info-updating-in-seconds"></span> seconds&hellip;</div>
     </div>
 
-    <div class="discussion-info one-third column omega">
+    <div class="discussion-info one-third column omega" id="discussion-info" data-discussion-id="<%= @discussion.id %>" data-poll-interval="<%= APP_CONFIG['poll_interval'] %>">
         <div id="discussion-info-id" class="one-third column alpha">
             <h3>d<%= @discussion.id %></h3>
             <h4>@<%= link_to @discussion.board.title, @discussion.board %></h4>
@@ -16,7 +20,7 @@
 
         <div id="discussion-info-time" class="one-third column alpha">
             <div id="discussion-info-last-post-time-relative">
-                Lastest <%= distance_of_time_in_words(Time.at(@discussion.last_post_at), Time.now) %> ago
+                Latest <%= distance_of_time_in_words(Time.at(@discussion.last_post_at), Time.now) %> ago
             </div>
         </div>
 

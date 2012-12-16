@@ -1,0 +1,8 @@
+<% unless @posts.empty? %>
+    $("#posts").append("<%=raw escape_javascript(render(@posts)) %>");
+    $("#discussion-info-last-post-time-relative").html("Latest <%= distance_of_time_in_words(Time.at(@last_post_at), Time.now) %> ago");
+
+    <% unless @post_count.nil? %>
+        $("#discussion-info-post-count").append(" +<%= @post_count %>");
+    <% end %>
+<% end %>
