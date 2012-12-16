@@ -17,6 +17,8 @@ function updatePosts(poll_interval, poll_attempts, poll_increment, max_increment
     after = $(".post").last().attr("data-post-id");
     $.getScript("/posts/poll.js?discussion_id=" + discussion_id + "&after=" + after);
 
+    // Delay, so .append from poll.js.erb can apply changes to posts on update before
+    // we check whether to reset poll interval to default
     setTimeout(function() {
         if (after == $(".post").last().attr("data-post-id")) {
             // No new posts, increase poll interval
