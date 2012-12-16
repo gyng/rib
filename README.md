@@ -14,6 +14,7 @@ Contributions and improvements are welcome.
 * Admin interface with post reporting
 
 ### To-do
+* Automatic updating for boards, post thread views
 * Text quotes (>quoted text)
 * Tests
 * Optimisations

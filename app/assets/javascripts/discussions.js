@@ -13,7 +13,6 @@ function updatePosts(poll_interval) {
     $("#discussion-info-updating-in-seconds").html(poll_interval/1000);
 }
 
- // Function to update counters on all elements with class counter
 function updateTimer(poll_interval) {
     $('#discussion-info-updating-in-seconds').each( function() {
         var count = parseInt($(this).html(), 10);
