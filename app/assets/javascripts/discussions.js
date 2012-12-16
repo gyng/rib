@@ -24,10 +24,10 @@ function updatePosts(poll_interval, poll_attempts, poll_increment, max_increment
         } else {
             poll_attempts = 0;
         }
-    }, 1000);
 
-    $("#discussion-info-updating-in-seconds").html((poll_interval + (poll_attempts * poll_increment))/1000);
-    setTimeout(function() { updatePosts(poll_interval, poll_attempts, poll_increment, max_increments); }, poll_interval + (poll_attempts * poll_increment));
+        $("#discussion-info-updating-in-seconds").html((poll_interval + (poll_attempts * poll_increment))/1000);
+        setTimeout(function() { updatePosts(poll_interval, poll_attempts, poll_increment, max_increments); }, poll_interval + (poll_attempts * poll_increment));
+    }, 1000);
 }
 
 function updateTimer() {
