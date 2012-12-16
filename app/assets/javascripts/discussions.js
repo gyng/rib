@@ -17,12 +17,14 @@ function updatePosts(poll_interval, poll_attempts, poll_increment, max_increment
     after = $(".post").last().attr("data-post-id");
     $.getScript("/posts/poll.js?discussion_id=" + discussion_id + "&after=" + after);
 
-    if (after == $(".post").last().attr("data-post-id")) {
-        // No new posts, increase poll interval
-        poll_attempts = Math.min(poll_attempts + 1, max_increments);
-    } else {
-        poll_attempts = 0;
-    }
+    setTimeout(function() {
+        if (after == $(".post").last().attr("data-post-id")) {
+            // No new posts, increase poll interval
+            poll_attempts = Math.min(poll_attempts + 1, max_increments);
+        } else {
+            poll_attempts = 0;
+        }
+    }, 1000);
 
     $("#discussion-info-updating-in-seconds").html((poll_interval + (poll_attempts * poll_increment))/1000);
     setTimeout(function() { updatePosts(poll_interval, poll_attempts, poll_increment, max_increments); }, poll_interval + (poll_attempts * poll_increment));
