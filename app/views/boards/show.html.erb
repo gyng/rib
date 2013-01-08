@@ -10,7 +10,7 @@
         <% end %>
     </div>
 
-    <div class="board-info one-thirds column omega">
+    <div id="board-info" class="one-thirds column omega">
         <h2 class="board-title"><%= @board.title %></h2>
         <p><%= link_to "Catalog", board_catalog_path(@board) %></p>
         <%= render partial: 'new_discussion_form' %>

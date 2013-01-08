@@ -23,3 +23,7 @@
 .admin-controls a {
     color: #888 !important;
 }
+
+.fixed {
+    position: fixed;
+}

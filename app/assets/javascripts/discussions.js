@@ -9,6 +9,17 @@ $(function() {
         $("#discussion-info-updating-in-seconds").html(poll_interval/1000);
         setTimeout(function() { updatePosts(poll_interval, poll_attempts, poll_increment, max_increments); }, poll_interval);
         setInterval(updateTimer, 1000);
+
+        // Set up sticky
+        var header_height = $(".board-switcher").outerHeight();
+
+        $(window).scroll(function() {
+            if ($(window).scrollTop()> header_height) {
+                $("#discussion-info").addClass("fixed").css("top", "20px");
+            } else {
+                $("#discussion-info").removeClass("fixed").next();
+            }
+        });
     }
 });
 
