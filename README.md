@@ -34,15 +34,17 @@ Contributions and improvements are welcome.
 
 3. Run `bundle install` to install required gems.
 
-4. Deploy using Apache/nginx, MySQL and Phusion Passenger (https://www.phusionpassenger.com/)
-or just test rib by running `rails server`.<br>
+4. Deploy or just test rib by running `rails server`.<br>
 See http://rubyonrails.org/deploy for more details.
+   * Note: Set line `config.assets.digest = true` in `config/environments/production.rb` to `false` if precompiling assets with `bundle exec rake assets:precompile`. See: http://guides.rubyonrails.org/asset_pipeline.html
 
-5. Run `rails runner script/create_admin.rb` to create an admin account. Login page is located at `<site url>/login`.
+5. Run `rails runner script/create_admin.rb` to create an admin account.
+   * Note: `create_admin.rb` requires ruby >= 1.9.3 (require 'io/console' for password hiding). If on a lower version run `rails runner script/create_admin_shown_password.rb` instead.
 
-6. Admin actions are in italics. The Admin toolbox is located at the bottom of every page.
+6. Admin login page is located at `<site url>/login`.<br>
+   Admin actions are in italics. The Admin toolbox is located at the bottom of each page.
 
-7. Configuration options (eg. reply limit, max discussions per board) are located in `/config/config.yml`.
+7. Configuration options (eg. reply limit, max discussions per board) are located in `config/config.yml`.
 
 ## rib Uses
 ### CSS boilerplate
