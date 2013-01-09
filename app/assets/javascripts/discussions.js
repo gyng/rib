@@ -12,16 +12,17 @@ $(function() {
 
         // Set up sticky
         var header_height = $(".board-switcher").outerHeight();
-
-        $(window).scroll(function() {
-            if ($(window).scrollTop()> header_height) {
-                $("#discussion-info").addClass("fixed").css("top", "20px");
-            } else {
-                $("#discussion-info").removeClass("fixed").next();
-            }
-        });
+        $(window).bind("scroll resize", function(){ fixDiscussionInfo(header_height); });
     }
 });
+
+function fixDiscussionInfo(header_height) {
+    if ($(window).scrollTop() > header_height && $(window).width() >= 768) {
+        $("#discussion-info").addClass("fixed").css("top", "20px");
+    } else {
+        $("#discussion-info").removeClass("fixed");
+    }
+}
 
 function updatePosts(poll_interval, poll_attempts, poll_increment, max_increments) {
     discussion_id = $("#discussion-info").attr("data-discussion-id");
