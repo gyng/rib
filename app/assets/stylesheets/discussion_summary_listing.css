@@ -5,3 +5,7 @@
 .vellip {
     font-size: 1.3rem;
 }
+
+.discussion-listing-replies .post-text {
+    max-width: 180px;
+}
