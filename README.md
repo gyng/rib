@@ -35,8 +35,7 @@ Contributions and improvements are welcome.
 5. Run `rails runner script/create_admin.rb` to create an admin account (Ruby >= 1.9.3).
    * If on a lower version run `rails runner script/create_admin_shown_password.rb` instead.
 
-6. Admin login page is located at `<site url>/login`.<br>
-   Admin actions are in italics. The Admin toolbox is located at the bottom of each page.
+6. Admin login page is located at `<site url>/login`. Admin actions are in italics. The Admin toolbox is located at the bottom of each page.
 
 7. Configuration options (eg. reply limit, max discussions per board) are located in `config/config.yml`.
 
@@ -50,4 +49,4 @@ Installed with `bundle install`
 * will_paginate
 
 ## License
-rib is licensed under the MIT License. See [LICENSE.md](LICENSE.md)
+rib is licensed under the MIT License. See LICENSE.md
