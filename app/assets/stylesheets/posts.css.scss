@@ -35,6 +35,15 @@
         z-index: 10;
     }
 
+    /* We use a video tag instead of an audio tag for audio files */
+/*    .post-content-audio video {
+        width: 100%;
+    }
+
+    .post-content-video video {
+        width: 100%;
+    }*/
+
     .unexpanded img {
         resize: both;
         width: 100%;

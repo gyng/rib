@@ -21,9 +21,16 @@ class Post < ActiveRecord::Base
   after_create :parse_post_links
   after_destroy :destroy_empty_discussion
 
+  image_mime = APP_CONFIG['accepted_image_mimetypes']
+  audio_mime = APP_CONFIG['accepted_audio_mimetypes']
+  video_mime = APP_CONFIG['accepted_video_mimetypes']
+  accepted_types = "^(#{audio_mime}|#{image_mime}|#{video_mime})$"
+
   # Paperclip
   has_attached_file :content, styles: { thumb: "350x350>" }
   validates_attachment_size :content, less_than: APP_CONFIG['max_content_size_mb'].megabytes
+  validates_attachment_content_type :content, :content_type => /#{accepted_types}/, :message => "Invalid file type."
+  before_content_post_process :allow_only_images # Only generate thumbnails for images
   before_content_post_process :save_original_file_information
   before_content_post_process :rename_content
 
@@ -33,9 +40,19 @@ class Post < ActiveRecord::Base
   validate :title, :length => { :maximum => APP_CONFIG['max_title_length'] }
 
   def save_original_file_information
-    geo = Paperclip::Geometry.from_file(content.queued_for_write[:original])
-    self.content_width = geo.width
-    self.content_height = geo.height
+    if self.content_content_type =~ /#{@image_mime}/
+      geo = Paperclip::Geometry.from_file(content.queued_for_write[:original])
+      self.content_width = geo.width
+      self.content_height = geo.height
+    end
+  end
+
+  # Only generate thumbnails for images by returning false
+  def allow_only_images
+    if !(content.content_type =~ %r{^(image|(x-)?application)/(x-png|pjpeg|jpeg|jpg|png|gif)$})
+      rename_content
+      return false
+    end
   end
 
   def rename_content

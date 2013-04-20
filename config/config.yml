@@ -19,6 +19,10 @@ defaults: &defaults
   application_name: 'rib'
 # poll_interval in milliseconds
   poll_interval: 30000
+# Regex, should be escaped automatically by rib
+  accepted_audio_mimetypes: 'audio/(mpeg3|x-mpeg-3|mpeg|ogg|mp3|webm|wav|aac|mp4)'
+  accepted_video_mimetypes: '(video/(mp4|ogg|webm)|application/ogg)'
+  accepted_image_mimetypes: 'image/(x-png|pjpeg|jpeg|jpg|png|gif|svg)'
 
 development:
   <<: *defaults

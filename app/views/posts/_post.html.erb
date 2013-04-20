@@ -34,9 +34,15 @@
                     <%= post.original_file_name %>
                 </div>
 
-                <div class="post-content-file-width">
-                    <%= post.content_width %>px&times;<%= post.content_height %>px
-                </div>
+                <% if post.content_content_type =~ /image\/(x-png|pjpeg|jpeg|jpg|png|gif|svg)/ %>
+                    <div class="post-content-file-width">
+                        <%= post.content_width %>px&times;<%= post.content_height %>px
+                    </div>
+                <% else %>
+                    <div class="post-content-file-type">
+                        <%= post.content_content_type %>
+                    </div>
+                <% end %>
 
                 <div class="post-content-file-size">
                     <%= number_to_human_size(post.content_file_size) %>
@@ -52,9 +58,20 @@
     <% end %>
 
     <% if post.content? %>
-        <div class="post-content unexpanded">
-            <%= link_to image_tag(post.content.url(:thumb)), post.content.url %>
-        </div>
+        <% if post.content_content_type =~ /#{APP_CONFIG['accepted_image_mimetypes']}/ %>
+            <div class="post-content unexpanded">
+                <%= link_to image_tag(post.content.url(:thumb)), post.content.url %>
+            </div>
+        <% elsif post.content_content_type =~ /#{APP_CONFIG['accepted_video_mimetypes']}/ %>
+            <div class="post-content-video">
+                <%= video_tag(post.content.url, :controls => true) %>
+            </div>
+        <% elsif post.content_content_type =~ /#{APP_CONFIG['accepted_audio_mimetypes']}/ %>
+            <div class="post-content-audio">
+                <!-- Use video anyway, thank ogg's MIME types -->
+                <%= video_tag(post.content.url, :controls => true) %>
+            </div>
+        <% end %>
     <% end %>
 
     <% if post.text? %>
