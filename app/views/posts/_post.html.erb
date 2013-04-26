@@ -103,6 +103,7 @@
             <% end %>
 
             <%= sanitize(simple_format(post.text.html_safe), tags: %w(a br p), attributes: %w(href class)) %>
+            <%= raw(youtube_embed(strip_tags(post.text))) %>
         </div>
     <% end %>
 
