@@ -6,29 +6,37 @@
     <%= render listing_posts_array.shift if !listing_posts_array.nil? %>
 
     <% if !listing_posts_array.nil? %>
+      <% image_count = 0 %>
+      <% discussion.posts.each do |p| %>
+        <% image_count += 1 if p.content? %>
+      <% end %>
+
       <div class="discussion-listing-replies offset-by-one">
-        <% if discussion.posts.size > 3 %>
+        <% if discussion.posts.size > APP_CONFIG['posts_per_summarised_discussion'] %>
           <span class="vellip">&vellip;</span>
+          <span class="inline-omitted-posts-count"><%= pluralize(discussion.posts.size - APP_CONFIG['posts_per_summarised_discussion'], "post") %> omitted</span>
+          <%= link_to 'Go to discussion', [discussion.board, discussion], {:class => "inline-link-to-discussion" } %>
         <% end %>
 
         <%= render listing_posts_array %>
       </div>
     <% end %>
 
-    <%= pluralize(discussion.posts.size - 1, 'reply') %>.
+    <div class="discussion-listing-stats">
+      <%= pluralize(discussion.posts.size - 1, 'reply') %>.
 
-    <% image_count = 0 %>
-    <% discussion.posts.each do |p| %>
-        <% image_count += 1 if p.content? %>
-    <% end %>
+      <% if image_count > 0 %>
+        <%= pluralize(image_count, "image") %>.
+      <% end %>
 
-    <% if image_count > 0 %>
-      <%= pluralize(image_count, "image") %>.
-    <% end %>
+      <% if discussion.posts.size > APP_CONFIG['posts_per_summarised_discussion'] %>
+        <%= pluralize(discussion.posts.size - APP_CONFIG['posts_per_summarised_discussion'], "post") %> omitted.
+      <% end %>
 
-    <br>
+      <br>
 
-    <%= link_to 'Go to discussion', [discussion.board, discussion] %>
+      <%= link_to 'Go to discussion', [discussion.board, discussion] %>
+    </div>
 
     <% if session[:user_id] %>
       <div class="admin-controls sixteen columns alpha omega row">

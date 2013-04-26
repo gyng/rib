@@ -3,8 +3,10 @@ module DiscussionsHelper
     raise "Empty discussion" if discussion.posts.empty?
     posts = Array.new
     posts.push(discussion.posts.first)
-    posts.push(discussion.posts[-2]) if discussion.posts.size > 2
-    posts.push(discussion.posts[-1]) if discussion.posts.size > 1
+
+    for i in 1..APP_CONFIG['posts_per_summarised_discussion'] - 1 do
+      posts.push(discussion.posts[-i]) if discussion.posts.size > i
+    end
     posts
   rescue Exception => e
     e.to_s

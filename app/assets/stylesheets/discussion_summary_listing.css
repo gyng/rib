@@ -9,3 +9,13 @@
 .discussion-listing-replies .post-text {
     max-width: 180px;
 }
+
+.inline-link-to-discussion {
+    color: #999999 !important;
+    font-style: italic;
+}
+
+.inline-omitted-posts-count {
+    color: #999999;
+    font-style: italic;
+}
