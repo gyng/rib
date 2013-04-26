@@ -4,8 +4,8 @@ module DiscussionsHelper
     posts = Array.new
     posts.push(discussion.posts.first)
 
-    for i in 1..APP_CONFIG['posts_per_summarised_discussion'] - 1 do
-      posts.push(discussion.posts[-i]) if discussion.posts.size > i
+    for i in 1..(APP_CONFIG['posts_per_summarised_discussion'] - 1) do
+      posts.insert(1, discussion.posts[-i]) if discussion.posts.size > i
     end
     posts
   rescue Exception => e
