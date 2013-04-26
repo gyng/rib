@@ -27,7 +27,8 @@ class Post < ActiveRecord::Base
   accepted_types = "^(#{audio_mime}|#{image_mime}|#{video_mime})$"
 
   # Paperclip
-  has_attached_file :content, styles: { thumb: "350x350>" }
+
+  has_attached_file :content, styles: { thumb: APP_CONFIG['thumbnail_dimensions'] }
   validates_attachment_size :content, less_than: APP_CONFIG['max_content_size_mb'].megabytes
   validates_attachment_content_type :content, :content_type => /#{accepted_types}/, :message => "Invalid file type."
   before_content_post_process :allow_only_images # Only generate thumbnails for images

@@ -14,9 +14,11 @@ defaults: &defaults
 # max_discussions_age in seconds
   max_discussions_age: 604800
   max_content_size_mb: 4
+# See paperclip gem docs for format.
+  thumbnail_dimensions: 300x300>
   max_text_length: 2500
   max_title_length: 100
-  posts_per_summarised_discussion: 3
+  posts_per_summarised_discussion: 4
   application_name: 'rib'
 # poll_interval in milliseconds
   poll_interval: 30000
