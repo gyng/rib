@@ -32,7 +32,6 @@
 
     .post-content img {
         position: relative;
-        z-index: 10;
     }
 
     /* We use a video tag instead of an audio tag for audio files */
@@ -43,6 +42,16 @@
     .post-content-video video {
         width: 100%;
     }*/
+
+    .post-index-entry-content-video video {
+        max-width: 250px;
+        max-height: 250px;
+    }
+
+    .post-index-entry-content-audio video {
+        max-width: 250px;
+        max-height: 250px;
+    }
 
     .unexpanded img {
         resize: both;
@@ -94,7 +103,6 @@
 }
 
 .post-index-entry-content img {
-    max-height: 250px;
     max-width: 250px;
-    resize: both;
+    max-height: 250px;
 }
