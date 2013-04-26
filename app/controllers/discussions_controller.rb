@@ -5,7 +5,7 @@ class DiscussionsController < ApplicationController
   # GET /discussions
   # GET /discussions.json
   def index
-    @discussions = Discussion.all.paginate page: params[:page], order: 'last_post_at desc', per_page: 10
+    @discussions = Discussion.paginate page: params[:page], order: "last_post_at DESC", per_page: 10
 
     respond_to do |format|
       format.html # index.html.erb
